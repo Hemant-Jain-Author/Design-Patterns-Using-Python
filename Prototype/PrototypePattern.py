@@ -1,0 +1,4 @@
+Interpretor
+Mediator
+Momento
+Visitor
