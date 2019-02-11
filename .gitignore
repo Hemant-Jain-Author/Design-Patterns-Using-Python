@@ -102,3 +102,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+Momento/mom.py
+data_file.json
+Momento/queueFile.py

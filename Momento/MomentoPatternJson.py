@@ -1,10 +1,11 @@
+# unoptimized but working lots of extra momento 
+# objects are created.
+
+import copy
+
 class Memento :
     def __init__(self, state) :
-        self.state = state 
-
-    # State is captured at init.
-    # def setState(self, state) :
-    #     self.state = state
+        self.state = state  
 
     def getState(self) :
         return self.state
@@ -14,14 +15,14 @@ class Originator :
         self.state = state
     
     def getState(self) :
-        return self.state
+        return self.__dict__
     
     def createMemento(self) :
-        return Memento(self.state)
+        return Memento(self.__dict__)
     
     def setMemento(self, m) :
-        self.state = m.getState()
-
+        print(m.getState())
+        self.__dict__ = m.getState()
 
 class CareTaker :
     def __init__(self):
@@ -33,9 +34,11 @@ class CareTaker :
         self.top += 1
         self.max = self.top
         if self.top <= len(self.history) - 1:
-            self.history[self.top] = m
+            self.history[self.top] = copy.deepcopy(m)
         else :
-            self.history.append(m)
+            self.history.append(copy.deepcopy(m))
+        
+        print(self.history, self.top)
     
     def getMemento(self, index) :
         return self.history[index]
@@ -43,23 +46,23 @@ class CareTaker :
     def undo(self) :
         print("Undoing state.")
         if (self.top <= 0):
-            self.top = 0
-            return self.getMemento(0)
+            return copy.deepcopy(self.getMemento(0))
         
         self.top -= 1
-        return self.getMemento(self.top)
+        return copy.deepcopy(self.getMemento(self.top))
 
     def redo(self) :
         print("Redoing state.")
         if (self.top >= (len(self.history) -  1) or self.top >= self.max) :
-            return self.getMemento(self.top)
+            return copy.deepcopy(self.getMemento(self.top))
         
         self.top += 1
-        return self.getMemento(self.top)
+        return copy.deepcopy(self.getMemento(self.top))
     
     def getStatesCount(self) :
         return len(self.history)
     
+
 
 originator = Originator()
 careTaker = CareTaker()
