@@ -25,23 +25,23 @@ class View(object):
     def update(self, name, id):
         print("View: Student Info : ", name , id)
 
-class Controller(object):
+class Presenter(object):
     def __init__(self):
         self.model = Model()
         self.view = View()
 
     def setData(self, name, id):
-        print("Controller: Receive data from client.")
+        print("Presenter: Receive data from client.")
         self.model.setData(name, id)
 
     def updateView(self):
-        print("Controller: Receive update from client.")
+        print("Presenter: Receive update from client.")
         data = self.model.getData()
         self.view.update(data.name, data.id)
 
 class Client(object):
-    controller = Controller()
-    controller.updateView()
+    presenter = Presenter()
+    presenter.updateView()
 
-    controller.setData("jack", 2)
-    controller.updateView()
+    presenter.setData("jack", 2)
+    presenter.updateView()

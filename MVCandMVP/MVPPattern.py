@@ -1,3 +1,4 @@
+# Model View Presenter
 class Model(object):
     def __init__(self):
         self.data = 'Hello, World!'
@@ -14,24 +15,24 @@ class View(object):
     def update(self, data):
         print("View: Updating the view with data: ", data)
 
-class Controller(object):
+class Presenter(object):
     def __init__(self):
         self.model = Model()
         self.view = View()
 
     def setData(self, data):
-        print("Controller: Receive data from client.")
+        print("Presenter: Receive data from client.")
         self.model.setData(data)
 
     def updateView(self):
-        print("Controller: Receive update view from client.")
+        print("Presenter: Receive update view from client.")
         data = self.model.getData()
         self.view.update(data)
 
 class Client(object):
-    print("Client: Pass trigger to Controller.")
-    controller = Controller()
-    controller.updateView()
+    print("Client: Pass trigger to Presenter.")
+    presenter = Presenter()
+    presenter.updateView()
 
-    controller.setData("Hello, Students!")
-    controller.updateView()
+    presenter.setData("Hello, Students!")
+    presenter.updateView()
