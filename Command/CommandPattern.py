@@ -37,7 +37,7 @@ class ConcreteCommand(ICommand):
         self._receiver.action("Action 2")
 
 
-class Receiver: # Bulb
+class Receiver: 
     def action(self, action):
         print(action)
 

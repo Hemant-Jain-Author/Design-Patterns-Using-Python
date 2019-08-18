@@ -27,3 +27,4 @@ class ConcreteHandler2(Handler):
 ch1 = ConcreteHandler1()
 ch2 = ConcreteHandler2(ch1)
 ch2.handleRequest()
+

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class Agent: 
+class Agent: # invoker 
     def __init__(self):
         self._commands = []
 
@@ -27,7 +27,7 @@ class SellStockOrder(ICommandOrder):
     def execute(self):
         self.stock.sell()
 
-class ReceiverStockTrade:
+class ReceiverStockTrade:  # Receiver
     def buy(self):
         print("Buy stocks")
     

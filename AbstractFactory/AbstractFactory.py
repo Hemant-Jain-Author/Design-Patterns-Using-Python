@@ -52,6 +52,8 @@ class MacFactory(GenFactory):
     def getButton(self):
         return MacButton()
 
+
+
 MacFactory().getMenu().desc()
 MacFactory().getButton().desc()
 WinFactory().getButton().desc()

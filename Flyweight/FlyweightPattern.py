@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 
 class Flyweight(ABC):
-    def __init__(self):
-        self.intrinsic_state = None  # intrinsic state
+    def __init__(self, intrinsic_state):
+        self.intrinsic_state = intrinsic_state  # intrinsic state
 
     @abstractmethod
     def operation(self, extrinsic_state): # extrinsic state

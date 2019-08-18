@@ -14,7 +14,7 @@ class Rectange(Shape):
     def draw(self, x1, y1, x2, y2):
         # print("Draw rectange color:%s topleft: (%s,%s) rightBottom: (%s,%s)"%(self._color,x1, y1, x2, y2) )
         pass
-        
+
 class RectangeFactory:
     def __init__(self):
         self._shapes = {}
