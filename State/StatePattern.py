@@ -36,6 +36,6 @@ class Off(BulbState):
 
 
 c = BulbControl()
-for i in range(100):
+for i in range(10):
     c.flip()
     print(c.toString())

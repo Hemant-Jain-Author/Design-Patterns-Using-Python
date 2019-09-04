@@ -1,38 +1,35 @@
 from abc import ABC, abstractmethod
 
-class Sorting(ABC):
+class Strategy(ABC):
     @abstractmethod
-    def sort(self, numbers):
+    def execute(self, data):
         pass
 
-class BubbleSort(Sorting):
-    def sort(self, numbers):
-        # Bubble Sort Algorithm
-        print("Bubble Sort Algorithm")        
-        return numbers
+class ConcreteStrategy1(Strategy):
+    def execute(self, data):
+        print("ConcreteStrategy1 execute")        
 
-class QuickSort(Sorting):
-    def sort(self, numbers):
-        # Quick Sort Algorithm
-        print("Quick Sort Algorithm")
-        return numbers
 
-class StrategyClass:
-    def __init__(self, algo = BubbleSort()):
-        self.sorter = algo
+class ConcreteStrategy2(Strategy):
+    def execute(self, data):
+        print("ConcreteStrategy2 execute")
 
-    def setSorter(self, algo):
-        self.sorter = algo
+
+class Context:
+    def __init__(self, strategy = ConcreteStrategy1()):
+        self.strategy = strategy
+
+    def setStrategy(self, strategy):
+        self.strategy = strategy
     
-    def sort(self, a):
-        a = self.sorter.sort(a)
-        return a
+    def execute(self):
+        data = 1 
+        self.strategy.execute(data)
 
-a = []
-for i in range(100):
-    a.append(i)
-s = StrategyClass()
-print(s.sort(a))
+        
+#Client code.
+c = Context()
+c.execute()
 
-s.setSorter(QuickSort())
-print(s.sort(a))
+c.setStrategy(ConcreteStrategy2())
+c.execute()

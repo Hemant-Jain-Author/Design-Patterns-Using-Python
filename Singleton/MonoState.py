@@ -1,4 +1,3 @@
-import this
 class MonoState(object):
     __sharedState = {}
 

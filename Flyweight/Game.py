@@ -32,8 +32,6 @@ class ClientClass:
         self.flyweitht.operation(self.extrinsic_state)
 
 
-
-
 factory = FlyweightFactory()
 c = ClientClass(factory, "common", "separate1")
 c.operation()

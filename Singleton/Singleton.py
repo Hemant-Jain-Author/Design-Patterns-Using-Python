@@ -14,12 +14,17 @@ class Singleton(object):
         if not cls._instance:
             cls._instance = object.__new__(cls) # super(Singleton, cls)
             cls.db = Database()
+            print("constructor")
         return cls._instance
     
     def addData(self, data):
         self.db.addData(data)
     
 
+s1 = Singleton() 
+s2 = Singleton()
+s1 = Singleton() 
+s2 = Singleton()
 s1 = Singleton() 
 s2 = Singleton()
 print(s1, s2)

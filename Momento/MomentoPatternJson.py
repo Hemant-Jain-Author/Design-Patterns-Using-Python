@@ -37,9 +37,7 @@ class CareTaker :
             self.history[self.top] = copy.deepcopy(m)
         else :
             self.history.append(copy.deepcopy(m))
-        
-        print(self.history, self.top)
-    
+            
     def getMemento(self, index) :
         return self.history[index]
     

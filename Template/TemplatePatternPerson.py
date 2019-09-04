@@ -48,8 +48,10 @@ class SuperHero(AbstractWorker):
 d = Doctor()
 d.dailyRoutine()
 print()
+
 f = FireFighter()
 f.dailyRoutine()
 print()
+
 s = SuperHero()
 s.dailyRoutine()

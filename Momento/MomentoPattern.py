@@ -2,9 +2,7 @@ class Memento :
     def __init__(self, state) :
         self.state = state 
 
-    # State is captured at init.
-    # def setState(self, state) :
-    #     self.state = state
+    # State is captured at init, no setState(self, state) function.
 
     def getState(self) :
         return self.state

@@ -35,20 +35,21 @@ class Observer(ABC):
         pass
 
 class ConcreteObserver1(Observer):
-    def __init__(self, sub):
-        super().__init__(sub)
+    def __init__(self, subect):
+        super().__init__(subject)
 
     def update(self):
         print(self._subject.getState() + " notified to Observer1")
 
 class ConcreteObserver2(Observer):
-    def __init__(self, sub):
-        super().__init__(sub)
+    def __init__(self, subject):
+        super().__init__(subject)
 
     def update(self):
         print(self._subject.getState() + " notified to Observer2")
 
 
+# Client Code.
 subject = Subject()
 observer1 = ConcreteObserver1(subject)
 observer2 = ConcreteObserver2(subject)
