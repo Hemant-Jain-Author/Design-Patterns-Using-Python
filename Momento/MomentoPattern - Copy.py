@@ -1,15 +1,11 @@
-class Momento :
-    def __init__(self, state) :
-        self.state = state 
-
-    # State is captured at init, no setState(self, state) function.
-
-    def getState(self) :
-        return self.state
-
-class Originator :    
+# Main application
+class Originator : 
+    def __init__(self) :
+        self.careTaker = CareTaker()
+    
     def setState(self, state) :
         self.state = state
+        self.careTaker.addMemento(self.createMemento())
     
     def getState(self) :
         return self.state
@@ -20,7 +16,25 @@ class Originator :
     def setMemento(self, m) :
         self.state = m.getState()
 
+    def undo(self) :
+        self.setMemento(self.careTaker.undo())
+        
+    def redo(self) :
+        self.setMemento(self.careTaker.redo())
 
+
+# Wrapper around state.
+class Momento : 
+    def __init__(self, state) :
+        self.state = state 
+
+    # State is captured at init, no setState(self, state) function.
+
+    def getState(self) :
+        return self.state        
+
+
+# CareTaker manages history.
 class CareTaker :
     def __init__(self):
         self.history = []
@@ -59,30 +73,25 @@ class CareTaker :
         return len(self.history)
     
 
+# Testing Code
 originator = Originator()
-careTaker = CareTaker()
-
 originator.setState("State 1")
-careTaker.addMemento(originator.createMemento())
 print(originator.getState())
 
 originator.setState("State 2")
-careTaker.addMemento(originator.createMemento())
 print(originator.getState())
 
 originator.setState("State 3")
-careTaker.addMemento(originator.createMemento())
 print(originator.getState())
 
-originator.setMemento(careTaker.undo())
+originator.undo()
 print(originator.getState())
 
-originator.setMemento(careTaker.undo())
+originator.undo()
 print(originator.getState())
 
-originator.setMemento(careTaker.redo())
+originator.redo()
 print(originator.getState())
 
-originator.setMemento(careTaker.redo())
+originator.redo()
 print(originator.getState())
-

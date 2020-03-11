@@ -15,10 +15,23 @@ class Cat(Animal):
 ## Animal factory defined
 class AnimalFactory(object):
     def getAnimal(self, object_type):
-        return eval(object_type)()
+        if object_type == "Dog":
+            return Dog()
+        elif object_type == "Cat":
+            return Cat()
+        
 
 f = AnimalFactory()
 a = f.getAnimal("Dog")
 a.voice()
 a = f.getAnimal("Cat")
 a.voice()
+
+"""
+
+Output:
+
+Bhow Bhow!!
+Meow Meow!!
+
+"""

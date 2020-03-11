@@ -1,11 +1,8 @@
 """ DRY - Don't repeat yourself. 
 Expect changes - Software always changes. 
-Solid principle """
+Solid principle
 
-""" 
 Class should have only one reason to change.
-
-
 """
 
 """ CRUD operations. - Create Read Update Delete  """ 

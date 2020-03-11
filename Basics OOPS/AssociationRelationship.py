@@ -1,6 +1,6 @@
 class Student(object):
     def __init__(self, name): #constructor
-        self.name = name #data members/ attributes
+        self.name = name #data members / attributes
     
     def toString(self): # member function
         return "Student: %s" % (self.name)
@@ -19,9 +19,9 @@ class Class(object):
             print(i.toString())
 
 
-c = Class("C1")
-s1 = Student("john")
-s2 = Student("smith")
+c = Class("SS1")
+s1 = Student("John Smith")
+s2 = Student("Jane Smith")
 c.addStudent(s1)
 c.addStudent(s2)
 c.display()

@@ -27,7 +27,7 @@ class MacButton(Button):
         print("Mac Button!!")
 
 
-## Animal factory defined
+## Factory defined
 class GenFactory(ABC):
     @abstractmethod
     def getMenu(self):
@@ -54,7 +54,21 @@ class MacFactory(GenFactory):
 
 
 
-MacFactory().getMenu().desc()
-MacFactory().getButton().desc()
-WinFactory().getButton().desc()
-WinFactory().getMenu().desc()
+m = MacFactory()
+m.getMenu().desc()
+m.getButton().desc()
+
+w = WinFactory()
+w.getButton().desc()
+w.getMenu().desc()
+
+"""
+Output:
+
+Mac Menu!!
+Mac Button!!
+Win Button!!
+Win Menu!!
+
+"""
+

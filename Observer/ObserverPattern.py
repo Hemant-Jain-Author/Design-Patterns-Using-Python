@@ -1,9 +1,8 @@
 from abc import ABC, abstractmethod
 
-class Subject:
+class Subject(ABC):
     def __init__(self):
         self.__observers = []
-        self.__state = None
 
     def attach(self, observer):
         observer._subject = self
@@ -16,6 +15,12 @@ class Subject:
     def notify(self):
         for observer in self.__observers:
             observer.update()
+
+
+class ConcreteSubject(Subject):
+    def __init__(self):
+        self.__state = None
+        super().__init__()
 
     def getState(self):
         return self.__state
@@ -35,7 +40,7 @@ class Observer(ABC):
         pass
 
 class ConcreteObserver1(Observer):
-    def __init__(self, subect):
+    def __init__(self, subject):
         super().__init__(subject)
 
     def update(self):
@@ -50,8 +55,18 @@ class ConcreteObserver2(Observer):
 
 
 # Client Code.
-subject = Subject()
+subject = ConcreteSubject()
 observer1 = ConcreteObserver1(subject)
 observer2 = ConcreteObserver2(subject)
 subject.setState("First state")
 subject.setState("Second state")
+
+
+"""
+Output:
+First state notified to Observer1
+First state notified to Observer2
+Second state notified to Observer1
+Second state notified to Observer2
+"""
+

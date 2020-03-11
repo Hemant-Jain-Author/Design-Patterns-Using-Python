@@ -20,8 +20,8 @@ class BubbleSort(Sorting):
 
 class SelectionSort(Sorting):
     def sort(self, numbers):
-        # Quick Sort Algorithm
-        print("Quick Sort Algorithm")
+        # Selection Sort Algorithm
+        print("Selection Sort Algorithm")
         # reverse array creation
         size = len(numbers)
         for i in range(size - 1):

@@ -67,13 +67,13 @@ class XMLVisitor(Visitor):
 
 class TextVisitor(Visitor):
     def visitCircle(self, element):
-        return "Circle ( x: %s, y: %s, radius:%s) " %(element.x, element.y, element.radius) 
+        return "Circle ( (x : %s, y : %s), radius : %s) "%(element.x, element.y, element.radius)
 
     def visitRectange(self, element):
-        return "Rectangle ( x:%s, y:%s, width:%s, height:%s)" %(element.x, element.y, element.width, element.height)
+        return "Rectangle ( (x : %s, y : %s), width : %s, height : %s)"%(element.x, element.y, element.width, element.height)
 
     def visitDot(self, element):
-        return "Dot ( x:%s, y:%s)" %(element.x, element.y)
+        return "Dot ( x : %s, y : %s)"%(element.x, element.y)
 
 class ObjectsStructure:
     def __init__(self):

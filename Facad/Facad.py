@@ -27,3 +27,12 @@ class ComplexSubsystem2:
 
 facade = SystemManagerFacade()
 facade.operation()
+
+"""
+Output:
+ComplexSubsystem1 operation1
+ComplexSubsystem1 operation2
+ComplexSubsystem2 operation1
+ComplexSubsystem2 operation2
+
+"""

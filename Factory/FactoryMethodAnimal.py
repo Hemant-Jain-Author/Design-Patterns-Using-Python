@@ -27,13 +27,12 @@ class DogFactory(AnimalFactory):
         return Dog()
 
 #Client Code
-def clientCode(creator):
-    creator.getAnimal().voice()
+d = DogFactory()
+d.getAnimal().voice()
+c = CatFactory()
+c.getAnimal().voice()
 
-clientCode(DogFactory())
-clientCode(CatFactory())
-
-#loose coupeling 
+# loose coupeling 
 # single responsibility principle.
 # open close principle.
 
@@ -47,4 +46,6 @@ class CowFactory(AnimalFactory):
     def getAnimal(self):
         return Cow()
 
-clientCode(CowFactory())
+#Client Code
+cw = CowFactory()
+cw.getAnimal().voice()

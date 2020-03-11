@@ -1,25 +1,32 @@
 from abc import ABC, abstractmethod
-class BaseClass(ABC):
+class Product(ABC):
     @abstractmethod
     def operation(self):
         pass
 
-class SubClass1(BaseClass):
+class Product1(Product):
     def operation(self):
-        print("SubClass1 Operation!")
+        print("Product1 Operation!")
 
-class SubClass2(BaseClass):
+class Product2(Product):
     def operation(self):
-        print("SubClass2 Operation!")
+        print("Product2 Operation!")
 
 ## factory defined
 class Factory(object):
     def getObject(self, object_type):
-        return eval(object_type)()
-
+        if object_type == "Product1":
+            return Product1()
+        elif object_type == "Product2":
+            return Product2()
 f = Factory()
-a = f.getObject("SubClass1")
+a = f.getObject("Product1")
 a.operation()
 
-a = f.getObject("SubClass2")
+a = f.getObject("Product2")
 a.operation()
+
+""" Output:
+Product1 Operation!
+Product2 Operation!
+"""

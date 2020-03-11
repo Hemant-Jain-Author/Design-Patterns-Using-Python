@@ -29,7 +29,6 @@ class On(BulbState):
 class Off(BulbState):
     def flip(self, bc):
         bc.setState(On())
-        print("Off")
 
     def toString(self):
         return "Off"

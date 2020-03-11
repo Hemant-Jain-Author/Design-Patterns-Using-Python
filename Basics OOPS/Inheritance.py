@@ -1,6 +1,6 @@
 class Person(object):
     def __init__(self, name, age, gender): #constructor
-        self.name = name #data members/ attributes
+        self.name = name #data members / attributes
         self.age = age
         self.__gender = gender
     

@@ -15,6 +15,7 @@ class ConcreteBookParser(BookParser):
     def __init__(self, book):
         print("Concrete Subject Request Method")
         # Number of pages calculation heavy operation.
+        # Suppose this calculation come to 1000 pages.
         self._numPages = 1000
 
     def numPages(self):
