@@ -27,5 +27,13 @@ class ConcreteClass2(AbstractClass):
     def _operation2(self):
         print("Concrete Class 2 : Operation 2")
 
+
+# Client Code
 concrete_class = ConcreteClass1()
 concrete_class.template_method()
+
+"""
+Output:
+Concrete Class 1 : Operation 1
+Concrete Class 1 : Operation 2
+"""

@@ -40,6 +40,16 @@ class AddDataToDB(AddDataTemplate):
     def _close(self):
         print("Close Database")  
 
+# Client Code 
 o = AddDataToDB()
 o.addData()
+
+"""
+Output:
+Open Database.
+Add data to Database.
+Close Database
+"""
+
+
 

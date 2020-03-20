@@ -1,4 +1,4 @@
-# unoptimized but working lots of extra momento 
+# unoptimized but working lots of extra Memento 
 # objects are created.
 
 import copy

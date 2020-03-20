@@ -50,8 +50,8 @@ class ShoppingCart:
     def add(self, o):
         self.list.append(o)
 
-    def setVisitor(self, visitor):
-        self.visitor = visitor
+    def setDiscountVisitor(self, discount):
+        self.visitor = discount
 
     def accept(self):
         cost = 0
@@ -60,12 +60,18 @@ class ShoppingCart:
         print("total cost : ", cost)
     
     
-
+# Client Code
 os = ShoppingCart()
 os.add(Fruit(100,10,"Apple"))
 os.add(Book(100,12345))
-os.setVisitor(SundayDiscount())
+os.setDiscountVisitor(SundayDiscount())
 os.accept()
 
-os.setVisitor(SaleDiscount())
+os.setDiscountVisitor(SaleDiscount())
 os.accept()
+
+"""
+Output:
+total cost :  1000
+total cost :  550.0
+"""

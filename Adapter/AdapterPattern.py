@@ -2,20 +2,27 @@ from abc import ABC, abstractmethod
 
 class DesiredInterface(ABC):
     @abstractmethod
-    def request(self):
+    def operation(self):
         pass
 
 class Adapter(DesiredInterface):
     def __init__(self):
         self._adaptee = Adaptee()
         
-    def request(self):
-        self._adaptee.some_request()
+    def operation(self):
+        self._adaptee.some_operation()
 
 class Adaptee:
-    def some_request(self):
+    def some_operation(self):
         print("Adaptee some_request() function called.")
 
 
+# Client Code
 adapter = Adapter()
-adapter.request()
+adapter.operation()
+
+
+"""
+Output:
+Adaptee some_request() function called.
+"""

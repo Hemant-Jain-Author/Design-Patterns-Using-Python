@@ -36,6 +36,17 @@ class ConcreteVisitor2(Visitor):
     def visitElementB(self, elementB):
         print("ConcreteVisitor2", "visitElementB")
 
+
+# Client Code.
 visitor1 = ConcreteVisitor1()
 elementA = ConcreteElementA()
 elementA.accept(visitor1)
+
+elementA = ConcreteElementB()
+elementA.accept(visitor1)
+
+"""
+Output:
+ConcreteVisitor1 visitElementA
+ConcreteVisitor1 visitElementB
+"""

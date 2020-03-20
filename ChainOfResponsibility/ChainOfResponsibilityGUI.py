@@ -46,12 +46,18 @@ class Panel(Handler):
             self._parent.showHelpText()
 
 
+# Client Code
 p = Panel()
 p.setHelperText("Panel help text.")
 b1 = Button("Ok", p)
 b1.setHelperText("Ok button help text.")
 b2 = Button("Cancel", p)
-
-
 b1.showHelpText()
 b2.showHelpText()
+
+"""
+Output:
+    Help ::  Ok button help text.
+    Message passed to next in chain by Button
+    Help ::  Panel help text.
+"""

@@ -89,6 +89,7 @@ class ObjectsStructure:
         for shape in self.shapes:
             print(shape.accept(self.visitor))
 
+# Test Code
 os = ObjectsStructure()
 os.addShapes(Rectangle(6,7,8,9))
 os.addShapes(Circle(6,7,8))
@@ -98,3 +99,26 @@ os.accept()
 
 os.setVisitor(TextVisitor())
 os.accept()
+
+"""
+Output:
+<rectangle>
+  <x>6</x>
+  <y>7</y>
+  <width>8</width>
+  <height>9</height>
+</rectangle>
+<circle>
+  <x>6</x>
+  <y>7</y>
+  <radius>8</radius>
+</circle>
+<dot>
+  <x>6</x>
+  <y>7</y>
+</dot>
+
+Rectangle ( (x : 6, y : 7), width : 8, height : 9)
+Circle ( (x : 6, y : 7), radius : 8) 
+Dot ( x : 6, y : 7)
+"""

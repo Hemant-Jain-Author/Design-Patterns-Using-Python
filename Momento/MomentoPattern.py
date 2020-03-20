@@ -1,11 +1,3 @@
-class Momento :
-    def __init__(self, state) :
-        self.state = state 
-
-    # State is captured at init, no setState(self, state) function.
-
-    def getState(self) :
-        return self.state
 
 class Originator :    
     def setState(self, state) :
@@ -15,12 +7,21 @@ class Originator :
         return self.state
     
     def createMemento(self) :
-        return Momento(self.state)
+        return Memento(self.state)
     
     def setMemento(self, m) :
         self.state = m.getState()
 
+class Memento :
+    def __init__(self, state) :
+        self.state = state 
 
+    # State is captured at init, no setState(self, state) function.
+
+    def getState(self) :
+        return self.state
+
+    
 class CareTaker :
     def __init__(self):
         self.history = []

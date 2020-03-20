@@ -11,7 +11,7 @@ class Originator :
         return self.state
     
     def createMemento(self) :
-        return Momento(self.state)
+        return Memento(self.state)
     
     def setMemento(self, m) :
         self.state = m.getState()
@@ -24,7 +24,7 @@ class Originator :
 
 
 # Wrapper around state.
-class Momento : 
+class Memento : 
     def __init__(self, state) :
         self.state = state 
 

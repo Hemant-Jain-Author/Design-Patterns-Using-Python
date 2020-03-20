@@ -24,7 +24,15 @@ class ConcreteHandler2(Handler):
             print("Message passed to next in chain by ConcreteHandler2")
             self._successor.handleRequest()
 
+
+# Client Code
 ch1 = ConcreteHandler1()
 ch2 = ConcreteHandler2(ch1)
 ch2.handleRequest()
 
+"""
+Output:
+    Message passed to next in chain by ConcreteHandler2
+    Finally handled by ConcreteHandler1
+
+"""

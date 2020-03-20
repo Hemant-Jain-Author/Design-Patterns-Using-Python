@@ -15,13 +15,6 @@ class Circle(Shape):
         print("Draw the Circle.")
 
 
-class RectangeAdapter(Shape):
-    def __init__(self, x, y, l, w):
-        self._adaptee = Rectange(x, y, l, w)
-        
-    def draw(self):
-        self._adaptee.oldDraw()
-
 class Rectange:
     def __init__(self, x, y, l, w):
         self.x = x
@@ -30,8 +23,24 @@ class Rectange:
         self.width = w
 
     def oldDraw(self):
-        print("Draw the Rectangle.")
+        print("Drawing Rectangle.")
+        
+
+class RectangeAdapter(Shape):
+    def __init__(self, x, y, l, w):
+        self._adaptee = Rectange(x, y, l, w)
+        
+    def draw(self):
+        self._adaptee.oldDraw()
 
 
+# Client Code
 adapter = RectangeAdapter(1,2,3,4)
 adapter.draw()
+
+
+"""
+Output:
+Drawing Rectangle.
+
+"""
