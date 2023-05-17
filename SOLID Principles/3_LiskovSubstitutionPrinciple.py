@@ -5,16 +5,16 @@ class Rectangle():
         self.height = l
         self.width = w
 
-    def setWidth(self, w):
+    def set_width(self, w):
         self.width = w
 
-    def setHeight(self, h):
+    def set_height(self, h):
         self.height = h
 
-    def getWidth(self):
+    def get_width(self):
         return self.width
 
-    def getHeitht(self):
+    def get_height(self):
         return self.height
 
 class Square(Rectangle):
@@ -22,21 +22,21 @@ class Square(Rectangle):
         self.height = l
         self.width = l
 
-    def setWidth(self, w):
+    def set_width(self, w):
         self.width = self.height = w
 
-    def setHeight(self, h):
+    def set_height(self, h):
         self.width = self.height = h
 
 def testRect(rect):
-    rect.setHeight(10)
-    rect.setWidth(20)
-    assert 10*20 == rect.getHeitht()*rect.getWidth()
+    rect.set_height(10)
+    rect.set_width(20)
+    assert 10*20 == rect.get_height()*rect.get_width()
 
-
+# Client code.
 r = Rectangle(10, 20)
 testRect(r)
 
 s = Square(10)
-s.setWidth(20)
+s.set_width(20)
 #testRect(s)

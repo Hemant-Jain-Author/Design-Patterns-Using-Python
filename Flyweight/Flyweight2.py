@@ -17,14 +17,14 @@ class FlyweightFactory:
     def __init__(self):
         self._flyweights = {}
 
-    def getFlyweight(self, intrinsic_state):
+    def get_flyweight(self, intrinsic_state):
         if intrinsic_state not in self._flyweights:
             self._flyweights[intrinsic_state] = ConcreteFlyweight(intrinsic_state)
         return self._flyweights[intrinsic_state]
 
 class ClientClass:
     def __init__(self, factory, intrinsic_state, extrinsic_state):
-        self.flyweitht = factory.getFlyweight(intrinsic_state) 
+        self.flyweitht = factory.get_flyweight(intrinsic_state) 
         self.extrinsic_state = extrinsic_state
 
     def operation(self):

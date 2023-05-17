@@ -39,3 +39,8 @@ c.flip()
 print(c.to_string())
 c.flip()
 print(c.to_string())
+
+"""
+On
+Off
+"""

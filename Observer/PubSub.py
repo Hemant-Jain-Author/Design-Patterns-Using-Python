@@ -11,7 +11,7 @@ class Publisher(object):
         print('Subscribing: %s to topic: %s ' % (subs.id, topic))
 
 
-    def unSubscribe(self, subs, topic):
+    def unsubscribe(self, subs, topic):
         if topic in self.topicSubscribers:
             self.topicSubscribers[topic].remove(subs)    
 
@@ -54,7 +54,7 @@ print()
 pub.notify('Topic 2 data', 'topic2')
 
 print()
-pub.unSubscribe(sub3, 'topic2')
+pub.unsubscribe(sub3, 'topic2')
 pub.notify('Topic 2 data', 'topic2')
 
 """

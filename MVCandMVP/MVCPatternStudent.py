@@ -9,12 +9,12 @@ class Model(object):
     def __init__(self):
         self.st = Student("Harry", 1)
 
-    def setData(self, name, id):
+    def set_data(self, name, id):
         print("Model: Set data :", name, id)
         self.st.name = name
         self.st.id = id
 
-    def getData(self):
+    def get_data(self):
         print("Model: Get data.")
         return self.st
 
@@ -26,7 +26,7 @@ class View(object):
 
     # In classic MVC view interact with the model to get data.
     def update(self):
-        st = self.model.getData()
+        st = self.model.get_data()
         print("View: Student Info : ", st.name , st.id)
 
 class Controller(object):
@@ -34,20 +34,20 @@ class Controller(object):
         self.model = Model()
         self.view = View(self.model)
 
-    def setData(self, name, id):
+    def set_data(self, name, id):
         print("Controller: Receive data from client.")
-        self.model.setData(name, id)
+        self.model.set_data(name, id)
 
-    def updateView(self):
+    def update_view(self):
         print("Controller: Receive update view from client.")
         self.view.update()
 
 # Client code
 controller = Controller()
-controller.updateView()
+controller.update_view()
 
-controller.setData("jack", 2)
-controller.updateView()
+controller.set_data("jack", 2)
+controller.update_view()
 
 """
 Controller: Receive update view from client.

@@ -2,15 +2,15 @@ from abc import ABC, abstractmethod
 
 class OrderPackingTemplate(ABC):
     
-    def packProduct(self): # Final
-        self.getProduct()
-        self.addProductToBox()
+    def pack_product(self): # Final
+        self.get_product()
+        self.add_product_tobox()
         self.delivery()
 
-    def getProduct(self):
+    def get_product(self):
         print("Get the product form shelf.")
 
-    def addProductToBox(self):
+    def add_product_tobox(self):
         print("Put the product inside Box.")
     
     @abstractmethod
@@ -28,7 +28,7 @@ class StoreOrderPacking(OrderPackingTemplate):
   
 # Client code. 
 o = OnlineOrderPacking()
-o.packProduct()
+o.pack_product()
 print()
 s = StoreOrderPacking()
-s.packProduct()
+s.pack_product()

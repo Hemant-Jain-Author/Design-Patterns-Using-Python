@@ -14,7 +14,7 @@ class Cat(Animal):
 
 ## Animal factory defined
 class AnimalFactory(object):
-    def getAnimal(self, object_type):
+    def get_animal(self, object_type):
         if object_type == "Dog":
             return Dog()
         elif object_type == "Cat":
@@ -23,9 +23,9 @@ class AnimalFactory(object):
 
 # Client code
 f = AnimalFactory()
-a = f.getAnimal("Dog")
+a = f.get_animal("Dog")
 a.voice()
-a = f.getAnimal("Cat")
+a = f.get_animal("Cat")
 a.voice()
 
 """

@@ -11,47 +11,47 @@ class Student:
 	def __init__(self, name):
 		self.name = name
 
-	def getName(self):
+	def get_name(self):
 		return self.name
 
 class BTechStudents(Student):
-	def __init__(self, name)
+	def __init__(self, name):
 		self.name = name	
 
 
 class MTechStudents(Student):
-	def __init__(self, name)
+	def __init__(self, name):
 		self.name = name
 
 
 class CoursesManager:
-	def registerStudents(student, course)
+	def register_students(student, course):
 		print("Register student to course.")
 		pass
 
-	def getPayment(sudent, course, payment)
-		payment.makePayment()
+	def get_payment(sudent, course, payment):
+		payment.make_payment()
 		print("Payment received.")
 
 
 class IPayment:
-	def makePayment():
+	def make_payment():
 		pass
 
 class CashPayment(IPayment):
-	def makePayment():
+	def make_payment():
 		print("Make cash payment.")
 
-	def countCash():
+	def count_cash():
 		print("Counting cash.")
 
 class CardPayment(IPayment):
-	def makePayment():
+	def make_payment():
 		print("Make card payment")
 
 
 class NetBankingPayment(IPayment):
-	def makePayment():
+	def make_payment():
 		print("Make net-banking payment.")
 
 

@@ -10,12 +10,12 @@ class Model(object):
     def __init__(self):
         self.st = Student("Harry", 1)
 
-    def setData(self, name, id):
+    def set_data(self, name, id):
         print("Model: Set data :", name, id)
         self.st.name = name
         self.st.id = id
 
-    def getData(self):
+    def get_data(self):
         print("Model: Get data.")
         return self.st
 
@@ -30,21 +30,21 @@ class Presenter(object):
         self.model = Model()
         self.view = View()
 
-    def setData(self, name, id):
+    def set_data(self, name, id):
         print("Presenter: Receive data from client.")
-        self.model.setData(name, id)
+        self.model.set_data(name, id)
 
-    def updateView(self):
+    def update_view(self):
         print("Presenter: Receive update from client.")
-        data = self.model.getData()
+        data = self.model.get_data()
         self.view.update(data.name, data.id)
 
 # Client code
 presenter = Presenter()
-presenter.updateView()
+presenter.update_view()
 
-presenter.setData("jack", 2)
-presenter.updateView()
+presenter.set_data("jack", 2)
+presenter.update_view()
 
 """
 Presenter: Receive update from client.

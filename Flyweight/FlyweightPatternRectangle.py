@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 import random
-import timeit
 
 class Shape(ABC):
     def __init__(self, color):

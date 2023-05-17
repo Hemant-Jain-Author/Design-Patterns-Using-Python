@@ -1,10 +1,6 @@
 from abc import ABC, abstractmethod
 
-class Shape(ABC):
-    @abstractmethod
-    def name(self):
-        pass
-    
+class Shape(ABC): 
     @abstractmethod
     def accept(self, visitor):
         pass
@@ -14,12 +10,9 @@ class Circle(Shape):
         self.x = x
         self.y = y
         self.radius = radius
-
-    def name(self):
-        return "Circle"    
         
     def accept(self, visitor):
-        return visitor.visitCircle(self)
+        return visitor.visit_circle(self)
 
 class Rectangle(Shape):
     def __init__(self, x, y, width, height):
@@ -28,41 +21,38 @@ class Rectangle(Shape):
         self.width = width
         self.height = height
 
-    def name(self):
-        return "Rectangle"
-
     def accept(self, visitor):
-        return visitor.visitRectange(self)
+        return visitor.visit_rectange(self)
 
 class Visitor(ABC):
-    def visitCircle(self, element):
+    def visit_circle(self, element):
         pass
 
-    def visitRectange(self, element):
+    def visit_rectange(self, element):
         pass
         
 class XMLVisitor(Visitor):
-    def visitCircle(self, element):
+    def visit_circle(self, element):
         return "<circle>\n  <x>%s</x>\n  <y>%s</y>\n  <radius>%s</radius>\n</circle>"%(element.x, element.y, element.radius) 
 
-    def visitRectange(self, element):
+    def visit_rectange(self, element):
         return "<rectangle>\n  <x>%s</x>\n  <y>%s</y>\n  <width>%s</width>\n  <height>%s</height>\n</rectangle>"%(element.x, element.y, element.width, element.height)
 
 class TextVisitor(Visitor):
-    def visitCircle(self, element):
+    def visit_circle(self, element):
         return "Circle ( (x : %s, y : %s), radius : %s) "%(element.x, element.y, element.radius)
 
-    def visitRectange(self, element):
+    def visit_rectange(self, element):
         return "Rectangle ( (x : %s, y : %s), width : %s, height : %s)"%(element.x, element.y, element.width, element.height)
 
 class ObjectsStructure:
     def __init__(self):
         self.shapes = []
 
-    def addShapes(self, shape):
+    def add_shapes(self, shape):
         self.shapes.append(shape)
 
-    def setVisitor(self, visitor):
+    def set_visitor(self, visitor):
         self.visitor = visitor
 
     def accept(self):
@@ -71,12 +61,12 @@ class ObjectsStructure:
 
 # Test Code
 os = ObjectsStructure()
-os.addShapes(Rectangle(6,7,8,9))
-os.addShapes(Circle(6,7,8))
-os.setVisitor(XMLVisitor())
+os.add_shapes(Rectangle(6,7,8,9))
+os.add_shapes(Circle(6,7,8))
+os.set_visitor(XMLVisitor())
 os.accept()
 
-os.setVisitor(TextVisitor())
+os.set_visitor(TextVisitor())
 os.accept()
 
 """

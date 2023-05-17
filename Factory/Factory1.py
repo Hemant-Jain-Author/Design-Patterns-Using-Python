@@ -14,7 +14,7 @@ class Product2(Product):
 
 ## factory defined
 class Factory(object):
-    def getObject(self, object_type):
+    def get_object(self, object_type):
         if object_type == "Product1":
             return Product1()
         elif object_type == "Product2":
@@ -22,10 +22,10 @@ class Factory(object):
 
 # Client code
 f = Factory()
-a = f.getObject("Product1")
+a = f.get_object("Product1")
 a.operation()
 
-a = f.getObject("Product2")
+a = f.get_object("Product2")
 a.operation()
 
 """ Output:
