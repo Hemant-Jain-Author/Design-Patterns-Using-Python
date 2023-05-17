@@ -11,7 +11,7 @@ class Book(Element):
         self.isbn = isbn
         
     def accept(self, visitor):
-        return visitor.visitBook(self)
+        return visitor.visit_book(self)
 
 class Fruit(Element):
     def __init__(self, price, quantity, type):
@@ -20,27 +20,27 @@ class Fruit(Element):
         self.type = type
 
     def accept(self, visitor):
-        return visitor.visitFruit(self) * self.quantity
+        return visitor.visit_fruit(self) * self.quantity
 
 class Visitor(ABC):
-    def visitBook(self, element):
+    def visit_book(self, element):
         pass
 
-    def visitFruit(self, element):
+    def visit_fruit(self, element):
         pass
 
 class SundayDiscount(Visitor):
-    def visitBook(self, element):
+    def visit_book(self, element):
         return element.price - 50
 
-    def visitFruit(self, element):
+    def visit_fruit(self, element):
         return element.price - 5
 
 class SaleDiscount(Visitor):
-    def visitBook(self, element):
+    def visit_book(self, element):
         return (element.price / 2)
 
-    def visitFruit(self, element):
+    def visit_fruit(self, element):
         return (element.price / 2)
         
 class ShoppingCart:

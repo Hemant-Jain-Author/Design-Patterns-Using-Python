@@ -3,13 +3,13 @@ import math
 
 class Context:
     def __init__(self, state):
-        self.currentState = state
+        self.current_state = state
 
-    def changeState(self, state):
-        self.currentState = state
+    def change_state(self, state):
+        self.current_state = state
     
     def request(self):
-        self.currentState.handle(self)
+        self.current_state.handle(self)
 
 
 class State(ABC):
@@ -21,15 +21,15 @@ class State(ABC):
 class ConcreteState1(State):
     def handle(self, context):
         print("ConcreteState1 handle")
-        context.changeState(ConcreteState2())
+        context.change_state(ConcreteState2())
 
 
 class ConcreteState2(State):
     def handle(self, context):
         print("ConcreteState2 handle")
-        context.changeState(ConcreteState1())
+        context.change_state(ConcreteState1())
 
-
+# Client code.
 state1 = ConcreteState1()
 context = Context(state1)
 context.request()

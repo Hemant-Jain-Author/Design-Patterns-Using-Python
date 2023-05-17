@@ -5,53 +5,50 @@ import copy
 class Shape(ABC):
     def __init__(self):
         self._color = ""
-
+    
     @abstractmethod
-    def draw(self):
-        print("shape")
-
+    def _str_(self):
+        return "Shape"
+    
     @abstractmethod
     def clone(self):
-        print("clone")
+        pass
 
 class Rectangle(Shape):
     def clone(self):
-        print("rectangle clone")
         return copy.deepcopy(self)
 
-    def draw(self):
-        print("rectangle draw")
+    def _str_(self):
+        return "Rectangle."
 
 class Circle(Shape):
     def clone(self):
-        print("cirtcle clone")
         return copy.deepcopy(self)
 
-    def draw(self):
-        print("circle draw")
+    def _str_(self):
+        return "Circle."
 
-class ShapeFactory:
+class ShapeRegistry:
     _shapes = {}
 
     @staticmethod
-    def addShape(key, value):
-        if key not in ShapeFactory._shapes:
-            ShapeFactory._shapes[key] = value
+    def add_shape(key, value):
+        if key not in ShapeRegistry._shapes:
+            ShapeRegistry._shapes[key] = value
     
     @staticmethod
-    def getShape(key):
-        if key  in ShapeFactory._shapes:
-            return ShapeFactory._shapes[key].clone()
+    def get_shape(key):
+        if key  in ShapeRegistry._shapes:
+            return ShapeRegistry._shapes[key].clone()
         return None
 
     @staticmethod
     def load():
-        ShapeFactory.addShape("circle", Circle())
-        ShapeFactory.addShape("rectangle", Rectangle())
+        ShapeRegistry.add_shape("circle", Circle())
+        ShapeRegistry.add_shape("rectangle", Rectangle())
 
-ShapeFactory.load()
-c = ShapeFactory.getShape("circle")
-c.draw()
-c2 = ShapeFactory.getShape("circle")
-c2.draw()
-print(c, c2)
+# Client code
+ShapeRegistry.load()
+c = ShapeRegistry.get_shape("circle")
+r = ShapeRegistry.get_shape("rectangle")
+print(c, r)

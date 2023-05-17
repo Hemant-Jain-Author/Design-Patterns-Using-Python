@@ -2,53 +2,52 @@ from abc import ABC, abstractmethod
 
 class AddDataTemplate(ABC):
     
-    def addData(self): # Final
-        self._open()
-        self._add()
-        self._close()
+    def add_data(self): # Final
+        self.open()
+        self.add()
+        self.close()
 
     @abstractmethod
-    def _open(self):
+    def open(self):
         pass
 
     @abstractmethod
-    def _add(self):
+    def add(self):
         pass
     
     @abstractmethod
-    def _close(self):
+    def close(self):
         pass
 
 
 class AddDataToFile(AddDataTemplate):
-    def _open(self):
+    def open(self):
         print("Open file.")
 
-    def _add(self):
+    def add(self):
         print("Add data to file.")
     
-    def _close(self):
+    def close(self):
         print("Close file")
         
 class AddDataToDB(AddDataTemplate):
-    def _open(self):
+    def open(self):
         print("Open Database.")
 
-    def _add(self):
+    def add(self):
         print("Add data to Database.")
     
-    def _close(self):
-        print("Close Database")  
+    def close(self):
+        print("Close Database.")  
 
 # Client Code 
 o = AddDataToDB()
-o.addData()
+o.add_data()
 
 """
-Output:
 Open Database.
 Add data to Database.
-Close Database
+Close Database.
 """
 
 

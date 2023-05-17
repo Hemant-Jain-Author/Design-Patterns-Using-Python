@@ -5,14 +5,14 @@ class BulbControl:
     def __init__(self):
         self.current = Off()
     
-    def setState(self, state):
+    def set_state(self, state):
         self.current = state
 
     def flip(self):
         self.current.flip(self)
 
-    def toString(self):
-        return self.current.toString()
+    def to_string(self):
+        return self.current.to_string()
 
 class BulbState(ABC):
     @abstractmethod
@@ -21,20 +21,21 @@ class BulbState(ABC):
 
 class On(BulbState):
     def flip(self, bc):
-        bc.setState(Off())
+        bc.set_state(Off())
 
-    def toString(self):
+    def to_string(self):
         return "On"
 
 class Off(BulbState):
     def flip(self, bc):
-        bc.setState(On())
+        bc.set_state(On())
 
-    def toString(self):
+    def to_string(self):
         return "Off"
 
-
+# Client code.
 c = BulbControl()
-for i in range(10):
-    c.flip()
-    print(c.toString())
+c.flip()
+print(c.to_string())
+c.flip()
+print(c.to_string())

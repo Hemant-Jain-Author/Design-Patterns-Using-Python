@@ -46,7 +46,6 @@ elementA = ConcreteElementB()
 elementA.accept(visitor1)
 
 """
-Output:
 ConcreteVisitor1 visitElementA
 ConcreteVisitor1 visitElementB
 """

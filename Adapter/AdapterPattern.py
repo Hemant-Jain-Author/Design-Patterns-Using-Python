@@ -21,8 +21,6 @@ class Adaptee:
 adapter = Adapter()
 adapter.operation()
 
-
 """
-Output:
 Adaptee some_request() function called.
 """

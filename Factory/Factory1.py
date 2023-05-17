@@ -19,6 +19,8 @@ class Factory(object):
             return Product1()
         elif object_type == "Product2":
             return Product2()
+
+# Client code
 f = Factory()
 a = f.getObject("Product1")
 a.operation()

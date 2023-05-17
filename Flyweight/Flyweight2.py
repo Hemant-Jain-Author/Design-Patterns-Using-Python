@@ -33,7 +33,7 @@ class ClientClass:
 
 
 
-
+# Client code
 factory = FlyweightFactory()
 c = ClientClass(factory, "common", "separate1")
 c.operation()

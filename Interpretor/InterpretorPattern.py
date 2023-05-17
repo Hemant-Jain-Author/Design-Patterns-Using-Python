@@ -17,5 +17,6 @@ class TerminalExpression(AbstractExpression):
     def interpret(self):
         pass
 
+#Client Code.
 tree = NonterminalExpression(TerminalExpression())
 tree.interpret()

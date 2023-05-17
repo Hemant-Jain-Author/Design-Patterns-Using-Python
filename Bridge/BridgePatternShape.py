@@ -34,6 +34,7 @@ class BlueImplementor(ColorImplementor):
     def fill(self):
         return "Blue"
 
+# Client code.
 c1 = RedImplementor()
 abstraction = CircleAbstraction(c1)
 abstraction.draw()

@@ -21,6 +21,7 @@ class AnimalFactory(object):
             return Cat()
         
 
+# Client code
 f = AnimalFactory()
 a = f.getAnimal("Dog")
 a.voice()
@@ -28,10 +29,6 @@ a = f.getAnimal("Cat")
 a.voice()
 
 """
-
-Output:
-
 Bhow Bhow!!
 Meow Meow!!
-
 """

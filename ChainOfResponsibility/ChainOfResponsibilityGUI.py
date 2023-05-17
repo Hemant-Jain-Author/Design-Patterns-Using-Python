@@ -6,21 +6,21 @@ class Handler(ABC):
         self._helpText = None
 
     @abstractmethod
-    def showHelpText(self):
+    def show_helper_text(self):
         pass
 
-    def setHelperText(self, text):
+    def set_helper_text(self, text):
         self._helpText = text
 
 
 
 class Container(Handler):
-    def showHelpText(self):
+    def show_helper_text(self):
         if self._helpText is not None:  # Can handle request.
             print("Help :: ", self._helpText)
         elif self._parent is not None:
             print("Message passed to next in chain by Container")
-            self._parent.showHelpText()
+            self._parent.show_helper_text()
 
 
 
@@ -29,35 +29,34 @@ class Button(Handler):
         super(Button, self).__init__(parent)
         self._label = label
 
-    def showHelpText(self):
+    def show_helper_text(self):
         if self._helpText is not None:  # Can handle request.
             print("Help :: ", self._helpText)
         elif self._parent is not None:
             print("Message passed to next in chain by Button")
-            self._parent.showHelpText()
+            self._parent.show_helper_text()
 
 
 class Panel(Handler):
-    def showHelpText(self):
+    def show_helper_text(self):
         if self._helpText is not None:  # Can handle request.
             print("Help :: ", self._helpText)
         elif self._parent is not None:
             print("Message passed to next in chain by Panel")
-            self._parent.showHelpText()
+            self._parent.show_helper_text()
 
 
 # Client Code
 p = Panel()
-p.setHelperText("Panel help text.")
+p.set_helper_text("Panel help text.")
 b1 = Button("Ok", p)
-b1.setHelperText("Ok button help text.")
+b1.set_helper_text("Ok button help text.")
 b2 = Button("Cancel", p)
-b1.showHelpText()
-b2.showHelpText()
+b1.show_helper_text()
+b2.show_helper_text()
 
 """
-Output:
-    Help ::  Ok button help text.
-    Message passed to next in chain by Button
-    Help ::  Panel help text.
+Help ::  Ok button help text.
+Message passed to next in chain by Button
+Help ::  Panel help text.
 """

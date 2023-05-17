@@ -2,11 +2,11 @@ from abc import ABC, abstractmethod
 
 class Mediator(ABC):
     @abstractmethod
-    def addColleague(self, Colleague):
+    def add_colleague(self, Colleague):
         pass
 
     @abstractmethod
-    def sendMessage(self, message, ColleagueId):
+    def send_message(self, message, ColleagueId):
         pass
     
         
@@ -14,10 +14,10 @@ class ConcreteMediator(Mediator):
     def __init__(self):
         self.Colleagues = {}
   
-    def addColleague(self, Colleague):
+    def add_colleague(self, Colleague):
         self.Colleagues[Colleague.id] = Colleague
 
-    def sendMessage(self, message, ColleagueId):
+    def send_message(self, message, ColleagueId):
         print("Mediator pass Message : " + message)
         self.Colleagues[ColleagueId].receive(message)
 
@@ -43,7 +43,7 @@ class ConcreteColleague1(object):
     
     def send(self, message, to):
         print(self.id + " Sent Message : " + message)
-        self.mediator.sendMessage(message, to)
+        self.mediator.send_message(message, to)
  
     def receive(self, message):
         print(self.id + " Received Message " + message)
@@ -56,18 +56,15 @@ class ConcreteColleague2(object):
     
     def send(self, message, to):
         print(self.id + " Sent Message : " + message)
-        self.mediator.sendMessage(message, to)
+        self.mediator.send_message(message, to)
  
     def receive(self, message):
         print(self.id + " Received Message " + message)
 
-
+# Client code.
 mediator = ConcreteMediator()
-
 first = ConcreteColleague1(mediator)
-mediator.addColleague(first)
-
+mediator.add_colleague(first)
 second = ConcreteColleague2(mediator)
-mediator.addColleague(second)
-
+mediator.add_colleague(second)
 first.send("Hello, World!", "Second")

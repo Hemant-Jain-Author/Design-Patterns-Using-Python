@@ -29,6 +29,7 @@ class ConcreteImplementor2(Implementor):
     def operation(self):
         print("ConcreteImplementor2 operation")
 
+# Client code.
 c1 = ConcreteImplementor1()
 abstraction = ConcreteAbstraction(c1)
 abstraction.operation()

@@ -22,10 +22,10 @@ class ConcreteSubject(Subject):
         self.__state = None
         super().__init__()
 
-    def getState(self):
+    def get_states(self):
         return self.__state
 
-    def setState(self, arg):
+    def set_states(self, arg):
         self.__state = arg
         self.notify()
 
@@ -44,29 +44,27 @@ class ConcreteObserver1(Observer):
         super().__init__(subject)
 
     def update(self):
-        print(self._subject.getState() + " notified to Observer1")
+        print(self._subject.get_states() + " notified to Observer1")
 
 class ConcreteObserver2(Observer):
     def __init__(self, subject):
         super().__init__(subject)
 
     def update(self):
-        print(self._subject.getState() + " notified to Observer2")
+        print(self._subject.get_states() + " notified to Observer2")
 
 
 # Client Code.
 subject = ConcreteSubject()
 observer1 = ConcreteObserver1(subject)
 observer2 = ConcreteObserver2(subject)
-subject.setState("First state")
-subject.setState("Second state")
+subject.set_states("First state")
+subject.set_states("Second state")
 
 
 """
-Output:
 First state notified to Observer1
 First state notified to Observer2
 Second state notified to Observer1
 Second state notified to Observer2
 """
-

@@ -5,32 +5,32 @@ class Product(object):
         self.partA = A
         self.partB = B
         
-    def display(self):
-        print("Product : (%s,%s)"%(self.partA,self.partB))
+    def __str__(self):
+        return ("Product : (%s, %s)"%(self.partA,self.partB))
 
 class Builder(ABC):
     @abstractmethod
-    def setPartA(self, A):
+    def set_PartA(self, A):
         pass
 
     @abstractmethod
-    def setPartB(self, B):
+    def set_PartB(self, B):
         pass
 
     @abstractmethod
-    def getProduct(self):
+    def get_Product(self):
         pass
 
 class ConcreteBuilder(Builder):
-    def setPartA(self, A):
+    def set_PartA(self, A):
         self.partA = A
         return self  # returning self helps in chaining calls.
 
-    def setPartB(self, B):
+    def set_PartB(self, B):
         self.partB = B
         return self
 
-    def getProduct(self):
+    def get_Product(self):
         return Product(self.partA, self.partB)
 
 class Director:
@@ -38,17 +38,22 @@ class Director:
         self._builder = builder
 
     def construct(self):
-        return self._builder.setPartA("A value").setPartB("B value").getProduct() # chining calls
+        return self._builder.set_PartA("A1").set_PartB("B1").get_Product() # chining calls
 
     def construct2(self):
-        self._builder.setPartA("A value")
-        self._builder.setPartB("B value")
-        return  self._builder.getProduct()
+        self._builder.set_PartA("A2")
+        self._builder.set_PartB("B2")
+        return  self._builder.get_Product()
 
+# Client code.
 builder = ConcreteBuilder()
 director = Director(builder)
 product = director.construct()
+print(product)
 product2 = director.construct2()
-print(product, product2)
-product.display()
-product2.display()
+print(product2)
+
+"""
+Product : (A1, B1)
+Product : (A2, B2)
+"""

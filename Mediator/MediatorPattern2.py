@@ -44,9 +44,8 @@ class ConcreteColleague(object):
     def receive(self, message):
         print(self.id + " Received Message " + message)
 
-
+# Client code
 mediator = ConcreteMediator()
-
 first = ConcreteColleague("First", mediator)
 mediator.addColleague(first)
 

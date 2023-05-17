@@ -1,26 +1,26 @@
 # Main application
 class Originator : 
     def __init__(self) :
-        self.careTaker = CareTaker()
+        self.care_taker = CareTaker()
     
-    def setState(self, state) :
+    def set_state(self, state) :
         self.state = state
-        self.careTaker.addMemento(self.createMemento())
+        self.care_taker.add_memento(self.create_memento())
     
-    def getState(self) :
+    def get_state(self) :
         return self.state
     
-    def createMemento(self) :
+    def create_memento(self) :
         return Memento(self.state)
     
-    def setMemento(self, m) :
-        self.state = m.getState()
+    def set_memento(self, m) :
+        self.state = m.get_state()
 
     def undo(self) :
-        self.setMemento(self.careTaker.undo())
+        self.set_memento(self.care_taker.undo())
         
     def redo(self) :
-        self.setMemento(self.careTaker.redo())
+        self.set_memento(self.care_taker.redo())
 
 
 # Wrapper around state.
@@ -28,9 +28,9 @@ class Memento :
     def __init__(self, state) :
         self.state = state 
 
-    # State is captured at init, no setState(self, state) function.
+    # State is captured at init, no set_state(self, state) function.
 
-    def getState(self) :
+    def get_state(self) :
         return self.state        
 
 
@@ -41,7 +41,7 @@ class CareTaker :
         self.top = -1
         self.max = -1
     
-    def addMemento(self, m) :
+    def add_memento(self, m) :
         self.top += 1
         self.max = self.top
         if self.top <= len(self.history) - 1:
@@ -49,49 +49,44 @@ class CareTaker :
         else :
             self.history.append(m)
     
-    def getMemento(self, index) :
+    def get_memento(self, index) :
         return self.history[index]
     
     def undo(self) :
         print("Undoing state.")
         if (self.top <= 0):
             self.top = 0
-            return self.getMemento(0)
+            return self.get_memento(0)
         
         self.top -= 1
-        return self.getMemento(self.top)
+        return self.get_memento(self.top)
 
     def redo(self) :
         print("Redoing state.")
         if (self.top >= (len(self.history) -  1) or self.top >= self.max) :
-            return self.getMemento(self.top)
+            return self.get_memento(self.top)
         
         self.top += 1
-        return self.getMemento(self.top)
+        return self.get_memento(self.top)
     
-    def getStatesCount(self) :
+    def get_states_count(self) :
         return len(self.history)
     
 
-# Testing Code
+# Client code
 originator = Originator()
-originator.setState("State 1")
-print(originator.getState())
-
-originator.setState("State 2")
-print(originator.getState())
-
-originator.setState("State 3")
-print(originator.getState())
+originator.set_state("State 1")
+print(originator.get_state())
+originator.set_state("State 2")
+print(originator.get_state())
+originator.set_state("State 3")
+print(originator.get_state())
 
 originator.undo()
-print(originator.getState())
-
+print(originator.get_state())
 originator.undo()
-print(originator.getState())
-
+print(originator.get_state())
 originator.redo()
-print(originator.getState())
-
+print(originator.get_state())
 originator.redo()
-print(originator.getState())
+print(originator.get_state())

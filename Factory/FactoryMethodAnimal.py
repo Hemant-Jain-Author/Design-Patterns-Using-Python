@@ -26,7 +26,7 @@ class DogFactory(AnimalFactory):
     def getAnimal(self):
         return Dog()
 
-#Client Code
+# Client Code
 d = DogFactory()
 d.getAnimal().voice()
 c = CatFactory()

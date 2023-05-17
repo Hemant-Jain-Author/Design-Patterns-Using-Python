@@ -34,9 +34,20 @@ class Controller(object):
         print("Controller: Receive update view from client.")
         self.view.update()
 
-class Client(object):
-    controller = Controller()
-    controller.updateView()
+# Client code
+controller = Controller()
+controller.updateView()
 
-    controller.setData("Hello, Students!")
-    controller.updateView()
+controller.setData("Hello, Students!")
+controller.updateView()
+
+"""
+Controller: Receive update view from client.
+Model: Get data:  Hello, World!
+View: Updating the view with data :  Hello, World!
+Controller: Receive data from client.
+Model: Set data : Hello, Students!
+Controller: Receive update view from client.
+Model: Get data:  Hello, Students!
+View: Updating the view with data :  Hello, Students!
+"""

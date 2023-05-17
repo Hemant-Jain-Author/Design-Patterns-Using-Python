@@ -4,14 +4,14 @@ import math
 
 class Context:
     def __init__(self, state):
-        self.currentState = state
+        self.current_state = state
         
-    def changeState(self, state):
-        self.currentState = state
+    def change_state(self, state):
+        self.current_state = state
     
     def request(self):
-        #print(self.currentState)
-        self.currentState.handle(self)
+        #print(self.current_state)
+        self.current_state.handle(self)
 
 
 class State(object):
@@ -29,7 +29,7 @@ class ConcreteState1(State):
 
 
     def handle(self, context):
-        context.changeState(ConcreteState2.getInstance())
+        context.change_state(ConcreteState2.getInstance())
 
 
 class ConcreteState2(State):
@@ -42,7 +42,7 @@ class ConcreteState2(State):
 
 
     def handle(self, context):
-        context.changeState(ConcreteState3.getInstance())
+        context.change_state(ConcreteState3.getInstance())
 
 
 class ConcreteState3(State):
@@ -56,7 +56,7 @@ class ConcreteState3(State):
 
     def handle(self, context):
 
-        context.changeState(ConcreteState4.getInstance())
+        context.change_state(ConcreteState4.getInstance())
 
 
 class ConcreteState4(State):
@@ -69,7 +69,7 @@ class ConcreteState4(State):
 
 
     def handle(self, context):
-        context.changeState(ConcreteState1.getInstance())
+        context.change_state(ConcreteState1.getInstance())
 
 class St(ABC):
     @abstractmethod
@@ -79,22 +79,22 @@ class St(ABC):
 
 class ConcreteSt1(St):
     def handle(self, context):
-        context.changeState(ConcreteSt2())
+        context.change_state(ConcreteSt2())
 
 
 class ConcreteSt2(St):
     def handle(self, context):
-        context.changeState(ConcreteSt3())
+        context.change_state(ConcreteSt3())
 
 
 class ConcreteSt3(St):
     def handle(self, context):
-        context.changeState(ConcreteSt4())
+        context.change_state(ConcreteSt4())
 
 
 class ConcreteSt4(St):
     def handle(self, context):
-        context.changeState(ConcreteSt1())
+        context.change_state(ConcreteSt1())
 
 
 def test(state, count):

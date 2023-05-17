@@ -22,7 +22,7 @@ class Rectange:
         self.length = l
         self.width = w
 
-    def oldDraw(self):
+    def old_draw(self):
         print("Drawing Rectangle.")
         
 
@@ -31,16 +31,13 @@ class RectangeAdapter(Shape):
         self._adaptee = Rectange(x, y, l, w)
         
     def draw(self):
-        self._adaptee.oldDraw()
+        self._adaptee.old_draw()
 
 
 # Client Code
 adapter = RectangeAdapter(1,2,3,4)
 adapter.draw()
 
-
 """
-Output:
 Drawing Rectangle.
-
 """

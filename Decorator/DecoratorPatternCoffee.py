@@ -2,18 +2,18 @@ from abc import ABC, abstractmethod
 
 class Coffee (ABC):
     @abstractmethod
-    def getCost(self):
+    def get_cost(self):
         pass
     
     @abstractmethod
-    def getIngredients(self):
+    def get_ingredients(self):
         pass
 
 class SimpleCoffee(Coffee):
-    def getCost(self):
+    def get_cost(self):
         return 10
 
-    def getIngredients(self):
+    def get_ingredients(self):
         return "Coffee"
 
 class CoffeeDecorator(Coffee):
@@ -21,34 +21,43 @@ class CoffeeDecorator(Coffee):
         self._component = component
 
     @abstractmethod
-    def getCost(self):
+    def get_cost(self):
         pass
 
     @abstractmethod
-    def getIngredients(self):
+    def get_ingredients(self):
         pass
 
 class MilkDecorator(CoffeeDecorator):
-    def getCost(self):
-        return self._component.getCost() + 4
+    def get_cost(self):
+        return self._component.get_cost() + 4
 
-    def getIngredients(self):
-        return self._component.getIngredients() +", Milk"
+    def get_ingredients(self):
+        return self._component.get_ingredients() +", Milk"
 
 class EspressoDecorator (CoffeeDecorator):
-    def getCost(self):
-        return self._component.getCost() + 5
+    def get_cost(self):
+        return self._component.get_cost() + 5
 
-    def getIngredients(self):
-        return self._component.getIngredients() +", Espresso "
+    def get_ingredients(self):
+        return self._component.get_ingredients() +", Espresso "
 
+# Client code
 component = SimpleCoffee()
 decorator1 = MilkDecorator(component)
 decorator2 = EspressoDecorator(decorator1)
-print("Coffee cost is :: %s" %decorator2.getCost())
-print("Coffee ingredients are :: %s" %decorator2.getIngredients())
+print("Coffee cost is :: %s" %decorator2.get_cost())
+print("Coffee ingredients are :: %s" %decorator2.get_ingredients())
 
 
 latte = MilkDecorator(MilkDecorator(SimpleCoffee()))
-print("Coffee cost is :: %s" %latte.getCost())
-print("Coffee ingredients are :: %s" %latte.getIngredients())
+print("Coffee cost is :: %s" %latte.get_cost())
+print("Coffee ingredients are :: %s" %latte.get_ingredients())
+
+"""
+Coffee cost is :: 19
+Coffee ingredients are :: Coffee, Milk, Espresso 
+Coffee cost is :: 18
+Coffee ingredients are :: Coffee, Milk, Milk
+
+"""

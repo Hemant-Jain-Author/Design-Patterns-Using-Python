@@ -26,7 +26,7 @@ class StoreOrderPacking(OrderPackingTemplate):
     def delivery(self):
         print("Add thanks message to box and deliver to customer.")
   
-
+# Client code. 
 o = OnlineOrderPacking()
 o.packProduct()
 print()

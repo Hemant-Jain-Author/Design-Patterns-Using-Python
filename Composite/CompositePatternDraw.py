@@ -58,7 +58,8 @@ class Shapes(IShapes):
             st += child.draw()
         st += ")"
         return st
-        
+
+# Client code.
 all =  Shapes()
 all.add( Rectangle(1, 2, 1, 2))
 all.add( Circle(5, 3, 10))
@@ -67,3 +68,11 @@ group.add(Rectangle(5, 7, 1, 2))
 group.add(Circle(2, 1, 2))
 all.add(group)
 print(all.draw())
+
+"""
+Draw a Rectangle at (1, 2).
+Draw a Circle of radius 10 at (5, 3) .
+Draw a Circle of radius 2 at (2, 1) .
+Draw a Rectangle at (5, 7).
+Shapes(<Rectangle><Circle>Shapes(<Circle><Rectangle>))
+"""

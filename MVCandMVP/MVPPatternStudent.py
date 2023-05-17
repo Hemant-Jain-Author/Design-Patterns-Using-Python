@@ -23,7 +23,7 @@ class View(object):
     # Dummy view which is print some data to standard output.
     # View is supposed to intaract the UI. 
     def update(self, name, id):
-        print("View: Student Info : ", name , id)
+        print("View: Student Info :", name , id)
 
 class Presenter(object):
     def __init__(self):
@@ -39,9 +39,20 @@ class Presenter(object):
         data = self.model.getData()
         self.view.update(data.name, data.id)
 
-class Client(object):
-    presenter = Presenter()
-    presenter.updateView()
+# Client code
+presenter = Presenter()
+presenter.updateView()
 
-    presenter.setData("jack", 2)
-    presenter.updateView()
+presenter.setData("jack", 2)
+presenter.updateView()
+
+"""
+Presenter: Receive update from client.
+Model: Get data.
+View: Student Info : Harry 1
+Presenter: Receive data from client.
+Model: Set data : jack 2
+Presenter: Receive update from client.
+Model: Get data.
+View: Student Info : jack 2
+"""

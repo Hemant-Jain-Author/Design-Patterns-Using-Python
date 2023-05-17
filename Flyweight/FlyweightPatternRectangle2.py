@@ -37,7 +37,7 @@ class Rectangle:
         print("Operation inside Rectangle.")
         self.flyweitht.draw(self.x1, self.y1, self.x2, self.y2)
 
-
+# Client code
 def test():
     factory = RectangeFactory()
     rarr = []

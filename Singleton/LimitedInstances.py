@@ -16,7 +16,7 @@ class LimitedInstances(object):
         self._instances.remove(self)
 
     
-
+# Client code. 
 LimitedInstances()
 LimitedInstances()
 LimitedInstances() 

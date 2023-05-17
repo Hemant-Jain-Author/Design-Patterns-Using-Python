@@ -8,41 +8,48 @@ class Prototype(ABC):
 
     @abstractmethod
     def clone(self):
-        print("clone")
+        pass
 
 class ConcretePrototype1(Prototype):
     def clone(self):
-        print("ConcretePrototype1 clone")
+        # ConcretePrototype1 clone
         return copy.deepcopy(self)
 
 class ConcretePrototype2(Prototype):
     def clone(self):
-        print("ConcretePrototype2 clone")
+        # ConcretePrototype2 clone
         return copy.deepcopy(self)
 
-class ObjectFactory:
-    _objects = {}
+# Client code
+c1 = ConcretePrototype1()
+c2 = ConcretePrototype2()
+print(c1, c2)
+c3 = c1.clone()
+c4 = c2.clone()
+print(c3, c4)
+
+
+class PrototypeRegistry:
+    _prototypes = {}
 
     @staticmethod
-    def addObject(key, value):
-        if key not in ObjectFactory._objects:
-            ObjectFactory._objects[key] = value
+    def add_prototype(key, value):
+        if key not in PrototypeRegistry._prototypes:
+            PrototypeRegistry._prototypes[key] = value
     
     @staticmethod
-    def getObject(key):
-        if key  in ObjectFactory._objects:
-            return ObjectFactory._objects[key].clone()
+    def get_prototype(key):
+        if key  in PrototypeRegistry._prototypes:
+            return PrototypeRegistry._prototypes[key].clone()
         return None
 
     @staticmethod
     def load():
-        ObjectFactory.addObject("1", ConcretePrototype1())
-        ObjectFactory.addObject("2", ConcretePrototype2())
+        PrototypeRegistry.add_prototype("1", ConcretePrototype1())
+        PrototypeRegistry.add_prototype("2", ConcretePrototype2())
 
-ObjectFactory.load()
-c1 = ObjectFactory.getObject("1")
-c2 = ObjectFactory.getObject("1")
+# Client code
+PrototypeRegistry.load()
+c1 = PrototypeRegistry.get_prototype("1")
+c2 = PrototypeRegistry.get_prototype("2")
 print(c1, c2)
-c3 = ObjectFactory.getObject("2")
-c4 = ObjectFactory.getObject("2")
-print(c3, c4)

@@ -23,8 +23,8 @@ class ConcreteIterator(collections.abc.Iterator):
         self._index += 1
         return val
 
+# Client code
 aggregate = ConcreteAggregate()
-
 for i in range(10):
     aggregate.addData(i)
 

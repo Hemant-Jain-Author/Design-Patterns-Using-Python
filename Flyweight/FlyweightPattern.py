@@ -16,13 +16,18 @@ class FlyweightFactory:
     def __init__(self):
         self._flyweights = {}
 
-    def getFlyweight(self, key):
+    def get_flyweight(self, key):
         if key not in self._flyweights:
-            self._flyweights[key] = ConcreteFlyweight()
+            self._flyweights[key] = ConcreteFlyweight(key)
         return self._flyweights[key]
+    
+    def get_count(self):
+        return len(self._flyweights)
 
+# Client code.
 factory = FlyweightFactory()
-flyweight1 = factory.getFlyweight("key")
-flyweight2 = factory.getFlyweight("key")
+flyweight1 = factory.get_flyweight("key")
+flyweight2 = factory.get_flyweight("key")
 flyweight1.operation(None)
 print(flyweight1, flyweight2)
+print(factory.get_count())

@@ -31,7 +31,7 @@ class ClientClass:
         print("Operation inside context.")
         self.flyweitht.operation(self.extrinsic_state)
 
-
+# Client code
 factory = FlyweightFactory()
 c = ClientClass(factory, "common", "separate1")
 c.operation()

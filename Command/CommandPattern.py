@@ -4,19 +4,19 @@ class Invoker:  # Remote
     def __init__(self):
         self._commands = []
 
-    def setCommand(self, command):
+    def set_command(self, command):
         self._commands.append(command)
 
-    def executeCommands(self):
+    def execute_commands(self):
         for command in self._commands:
             command.execute()
     
-    def unexecuteCommands(self):
+    def unexecute_commands(self):
         for command in self._commands:
             command.unexecute()
         
 
-class ICommand(ABC): 
+class Command(ABC): 
     @abstractmethod
     def execute(self):
         pass
@@ -26,7 +26,7 @@ class ICommand(ABC):
         pass
 
 
-class ConcreteCommand(ICommand):
+class ConcreteCommand(Command):
     def __init__(self, receiver):
         self._receiver = receiver
 
@@ -42,9 +42,16 @@ class Receiver:
         print(action)
 
 
+#Client Code.
 receiver = Receiver()
 concrete_command = ConcreteCommand(receiver)
 invoker = Invoker()
-invoker.setCommand(concrete_command)
-invoker.executeCommands()
-invoker.unexecuteCommands()
+invoker.set_command(concrete_command)
+invoker.execute_commands()
+invoker.unexecute_commands()
+
+
+"""
+Action 1
+Action 2
+"""

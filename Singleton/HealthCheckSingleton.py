@@ -16,6 +16,7 @@ class HealthCheck:
         self._servers.pop()
         self._servers.append("Server 5")
 
+# Client code. 
 hc1 = HealthCheck()
 hc1.addServer()
 hc2 = HealthCheck()

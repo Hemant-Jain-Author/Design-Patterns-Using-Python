@@ -5,32 +5,32 @@ class Product(object):
         self.partA = A
         self.partB = B
         
-    def display(self):
-        print("Product : (%s,%s)"%(self.partA,self.partB))
+    def __str__(self):
+        return ("Product : (%s, %s)"%(self.partA,self.partB))
 
 class Builder(ABC):
     def __init__(self):
         self.product = Product()
 
     @abstractmethod
-    def setPartA(self, A):
+    def set_PartA(self, A):
         pass
 
     @abstractmethod
-    def setPartB(self, B):
+    def set_PartB(self, B):
         pass
 
-    def getProduct(self):
+    def get_product(self):
         temp = self.product
         self.product = Product() # assign new product.
         return temp
 
 class ConcreteBuilder(Builder):
-    def setPartA(self, A):
+    def set_PartA(self, A):
         self.product.partA = A
         return self
 
-    def setPartB(self, B):
+    def set_PartB(self, B):
         self.product.partB = B
         return self
 
@@ -39,23 +39,30 @@ class Director:
         self._builder = builder
 
     def construct(self):
-        return self._builder.setPartA("A value").setPartB("B value").getProduct()
+        return self._builder.set_PartA("A1").set_PartB("B1").get_product()
 
     def construct2(self):
-        self._builder.setPartA("A value")
-        self._builder.setPartB("B value")
-        return  self._builder.getProduct()
+        self._builder.set_PartA("A2")
+        self._builder.set_PartB("B2")
+        return  self._builder.get_product()
 
     def construct3(self):
-        return self._builder.setPartA("A value").getProduct()
+        return self._builder.set_PartA("A3").get_product()
 
-
+# Client code.
 builder = ConcreteBuilder()
 director = Director(builder)
 product = director.construct()
+print(product)
+
 product2 = director.construct2()
+print(product2)
+
 product3 = director.construct3()
-print(product, product2, product3)
-product.display()
-product2.display()
-product3.display()
+print(product3)
+
+"""
+Product : (A1, B1)
+Product : (A2, B2)
+Product : (A3, B default)
+"""

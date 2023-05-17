@@ -1,26 +1,22 @@
 from abc import ABC, abstractmethod
 
 class Agent: # invoker 
-    def __init__(self):
-        self._commands = []
-
-    def placeOrder(self, command):
-        self._commands.append(command)
+    def place_order(self, command):
         command.execute()
 
-class ICommandOrder(ABC): 
+class Order(ABC): 
     @abstractmethod
     def execute(self):
         pass
 
-class BuyStockOrder(ICommandOrder):
+class BuyStockOrder(Order):
     def __init__(self, stock):
         self.stock = stock
     
     def execute(self):
         self.stock.buy()
 
-class SellStockOrder(ICommandOrder):
+class SellStockOrder(Order):
     def __init__(self, stock):
         self.stock = stock
 
@@ -34,10 +30,15 @@ class ReceiverStockTrade:  # Receiver
     def sell(self):
         print("Sell stocks")
 
-
-stock = ReceiverStockTrade()
-buyStock = BuyStockOrder(stock)
-sellStock = SellStockOrder(stock)
+# Client code.
+trader = ReceiverStockTrade()
+buyStock = BuyStockOrder(trader)
+sellStock = SellStockOrder(trader)
 agent = Agent()
-agent.placeOrder(buyStock)
-agent.placeOrder(sellStock)
+agent.place_order(buyStock)
+agent.place_order(sellStock)
+
+"""
+Buy stocks
+Sell stocks
+"""

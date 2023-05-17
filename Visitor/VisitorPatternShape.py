@@ -34,25 +34,11 @@ class Rectangle(Shape):
     def accept(self, visitor):
         return visitor.visitRectange(self)
 
-class Dot(Shape):
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def name(self):
-        return "Dot"
-
-    def accept(self, visitor):
-        return visitor.visitDot(self)
-
 class Visitor(ABC):
     def visitCircle(self, element):
         pass
 
     def visitRectange(self, element):
-        pass
-
-    def visitDot(self, element):
         pass
         
 class XMLVisitor(Visitor):
@@ -62,18 +48,12 @@ class XMLVisitor(Visitor):
     def visitRectange(self, element):
         return "<rectangle>\n  <x>%s</x>\n  <y>%s</y>\n  <width>%s</width>\n  <height>%s</height>\n</rectangle>"%(element.x, element.y, element.width, element.height)
 
-    def visitDot(self, element):
-        return "<dot>\n  <x>%s</x>\n  <y>%s</y>\n</dot>"%(element.x, element.y)
-
 class TextVisitor(Visitor):
     def visitCircle(self, element):
         return "Circle ( (x : %s, y : %s), radius : %s) "%(element.x, element.y, element.radius)
 
     def visitRectange(self, element):
         return "Rectangle ( (x : %s, y : %s), width : %s, height : %s)"%(element.x, element.y, element.width, element.height)
-
-    def visitDot(self, element):
-        return "Dot ( x : %s, y : %s)"%(element.x, element.y)
 
 class ObjectsStructure:
     def __init__(self):
@@ -93,7 +73,6 @@ class ObjectsStructure:
 os = ObjectsStructure()
 os.addShapes(Rectangle(6,7,8,9))
 os.addShapes(Circle(6,7,8))
-os.addShapes(Dot(6,7))
 os.setVisitor(XMLVisitor())
 os.accept()
 

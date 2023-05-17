@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 class Aggregate(ABC):
     @abstractmethod
-    def getIterator(self):
+    def get_iterator(self):
         pass
 
 class ConcreteAggregate(Aggregate):
@@ -12,7 +12,7 @@ class ConcreteAggregate(Aggregate):
     def addData(self, val):
         self._data.append(val)
 
-    def getIterator(self):
+    def get_iterator(self):
         return ConcreteIterator(self)
 
 class Iterator(ABC):
@@ -21,7 +21,7 @@ class Iterator(ABC):
         pass
     
     @abstractmethod
-    def hasNext(self):
+    def has_next(self):
         pass
 
 class ConcreteIterator(Iterator):
@@ -36,16 +36,16 @@ class ConcreteIterator(Iterator):
         self._index += 1
         return val
     
-    def hasNext(self):
+    def has_next(self):
         if self._index >= len(self._aggregate._data):
             return False
         return True
 
-
+# Client code.
 aggregate = ConcreteAggregate()
 for i in range(5):
     aggregate.addData(i)
 
 iterator =ConcreteIterator(aggregate)
-while iterator.hasNext():
+while iterator.has_next():
     print(iterator.next())
