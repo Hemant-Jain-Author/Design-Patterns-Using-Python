@@ -24,17 +24,17 @@ class Visitor(ABC):
 
 class ConcreteVisitor1(Visitor):
     def visit_elementA(self, elementA):
-        print("ConcreteVisitor1", "visit_elementA")
+        print("ConcreteVisitor1 visit_elementA() method called.")
 
     def visit_elementB(self, elementB):
-        print("ConcreteVisitor1", "visit_elementB")
+        print("ConcreteVisitor1 visit_elementB() method called.")
 
 class ConcreteVisitor2(Visitor):
     def visit_elementA(self, elementA):
-        print("ConcreteVisitor2", "visit_elementA")
+        print("ConcreteVisitor2 visit_elementA() method called.")
 
     def visit_elementB(self, elementB):
-        print("ConcreteVisitor2", "visit_elementB")
+        print("ConcreteVisitor2 visit_elementB() method called.")
 
 
 # Client Code.
@@ -46,6 +46,6 @@ elementA = ConcreteElementB()
 elementA.accept(visitor1)
 
 """
-ConcreteVisitor1 visit_elementA
-ConcreteVisitor1 visit_elementB
+ConcreteVisitor1 visit_elementA() method called.
+ConcreteVisitor1 visit_elementB() method called.
 """

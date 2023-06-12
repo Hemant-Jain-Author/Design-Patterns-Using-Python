@@ -48,4 +48,8 @@ for i in range(5):
 
 iterator =ConcreteIterator(aggregate)
 while iterator.has_next():
-    print(iterator.next())
+    print(iterator.next(), end=" ")
+
+"""
+0 1 2 3 4 
+"""

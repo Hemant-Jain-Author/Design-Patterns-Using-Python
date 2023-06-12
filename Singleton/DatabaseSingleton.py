@@ -5,13 +5,11 @@ class Database(object):
     _instance = None  # Keep instance reference 
     def __new__(cls):
         if not cls._instance:
-            cls._instance = super(Database, cls).__new__(cls)  
+            cls._instance = super().__new__(cls)
+            print("database created")
             cls.connection = sqlite3.connect("db.sqlite3")
             cls.cursorobj = cls.connection.cursor()
-        return cls._instance
-
-    def __init__(self):
-        print("database created")
+        return cls._instance      
     
     def create_table(self):
         self.cursorobj.execute("CREATE TABLE IF NOT EXISTS students ( id integer ,name text);")
@@ -29,7 +27,6 @@ class Database(object):
 # Client code. 
 db1 = Database()
 db2 = Database()
-
 print ("Database Objects DB1", db1)
 print ("Database Objects DB2", db2)
 db1.create_table()

@@ -45,8 +45,12 @@ class LinkedListIterator(collections.abc.Iterator):
 
 # Client code.
 aggregate = LinkedList()
-for i in range(10):
+for i in range(5):
     aggregate.add_head(i)
 
 for val in aggregate:
     print(val, end=" ")
+
+"""
+4 3 2 1 0 
+"""

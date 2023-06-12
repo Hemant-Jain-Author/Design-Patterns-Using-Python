@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+# Define the Product class with two parts
 class Product(object):
     def __init__(self, A = "A default", B = "B default"):
         self.partA = A
@@ -8,6 +9,7 @@ class Product(object):
     def __str__(self):
         return ("Product : (%s, %s)"%(self.partA,self.partB))
 
+# Define an abstract class called Builder
 class Builder(ABC):
     def __init__(self):
         self.product = Product()
@@ -25,6 +27,7 @@ class Builder(ABC):
         self.product = Product() # assign new product.
         return temp
 
+# Define a ConcreteBuilder class that extends Builder
 class ConcreteBuilder(Builder):
     def set_PartA(self, A):
         self.product.partA = A
@@ -34,6 +37,7 @@ class ConcreteBuilder(Builder):
         self.product.partB = B
         return self
 
+# Define a Director class that takes a builder object as a parameter
 class Director:
     def __init__(self, builder):
         self._builder = builder

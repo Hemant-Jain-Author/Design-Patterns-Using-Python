@@ -11,9 +11,7 @@ class IChatRoom(ABC):
 
     @abstractmethod
     def send_message(self, message, to):
-        pass
-    
-
+        pass  
         
 class ChatRoom(IChatRoom):
     def __init__(self):

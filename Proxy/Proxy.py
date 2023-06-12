@@ -1,4 +1,3 @@
-
 from abc import ABC, abstractmethod
 
 class Subject(ABC):
@@ -21,3 +20,7 @@ class Proxy(Subject):
 # Client code
 proxy = Proxy()
 proxy.request()
+
+"""
+Concrete Subject Request Method
+"""

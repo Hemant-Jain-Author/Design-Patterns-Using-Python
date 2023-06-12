@@ -30,6 +30,10 @@ class Context:
 #Client code.
 c = Context()
 c.execute()
-
 c.set_strategy(ConcreteStrategy2())
 c.execute()
+
+"""
+ConcreteStrategy1 execute
+ConcreteStrategy2 execute
+"""

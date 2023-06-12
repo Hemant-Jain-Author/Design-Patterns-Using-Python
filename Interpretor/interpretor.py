@@ -58,3 +58,7 @@ context.set_value("y", 5)
 expression = parse_expression("x + y + 2", context)
 result = expression.interpret()
 print(result)
+
+"""
+17
+"""

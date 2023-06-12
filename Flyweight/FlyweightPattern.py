@@ -30,4 +30,10 @@ flyweight1 = factory.get_flyweight("key")
 flyweight2 = factory.get_flyweight("key")
 flyweight1.operation(None)
 print(flyweight1, flyweight2)
-print(factory.get_count())
+print("Object count:", factory.get_count())
+
+"""
+Operation inside concrete flyweight
+<__main__.ConcreteFlyweight object at 0x000002A12546BBB0> <__main__.ConcreteFlyweight object at 0x000002A12546BBB0>
+Object count: 1
+"""

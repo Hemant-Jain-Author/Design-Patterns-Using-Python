@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+
 class Product(ABC):
     @abstractmethod
     def operation(self):
@@ -13,19 +14,27 @@ class Product2(Product):
         print("Product2 Operation!")
 
 ## factory defined
-class Factory(object):
-    def get_object(self, object_type):
-        if object_type == "Product1":
-            return Product1()
-        elif object_type == "Product2":
-            return Product2()
+class Factory(ABC):
+    @abstractmethod
+    def get_object(self):
+        pass
+
+class ConcreteFactory1(Factory):
+    def get_object(self):
+        return Product1()
+
+class ConcreteFactory2(Factory):
+    def get_object(self):
+        return Product2()
+
 
 # Client code
-f = Factory()
-a = f.get_object("Product1")
+f = ConcreteFactory1()
+a = f.get_object()
 a.operation()
 
-a = f.get_object("Product2")
+f = ConcreteFactory2()
+a = f.get_object()
 a.operation()
 
 """ Output:

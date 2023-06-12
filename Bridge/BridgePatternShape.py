@@ -42,3 +42,8 @@ abstraction.draw()
 c1 = GreenImplementor()
 abstraction = RectangeAbstraction(c1)
 abstraction.draw()
+
+"""
+Drawing Circle with color Red 
+Drawing Rectange with color Green 
+"""

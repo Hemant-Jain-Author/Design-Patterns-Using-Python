@@ -33,3 +33,7 @@ class ConcreteImplementor2(Implementor):
 c1 = ConcreteImplementor1()
 abstraction = ConcreteAbstraction(c1)
 abstraction.operation()
+
+"""
+ConcreteImplementor1 operation
+"""

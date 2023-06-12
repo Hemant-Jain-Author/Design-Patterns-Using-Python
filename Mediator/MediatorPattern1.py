@@ -68,3 +68,9 @@ mediator.add_colleague(first)
 second = ConcreteColleague2(mediator)
 mediator.add_colleague(second)
 first.send("Hello, World!", "Second")
+
+"""
+First Sent Message : Hello, World!
+Mediator pass Message : Hello, World!
+Second Received Message Hello, World!
+"""
