@@ -1,32 +1,44 @@
 from abc import ABC, abstractmethod
+
 class Product(ABC):
     @abstractmethod
     def operation(self):
         pass
 
-class Product1(Product):
+class ConcreteProduct1(Product):
     def operation(self):
-        print("Product1 Operation!")
+        print("Concrete Product1 Operation!")
 
-class Product2(Product):
+class ConcreteProduct2(Product):
     def operation(self):
-        print("Product2 Operation!")
+        print("Concrete Product2 Operation!")
 
-## factory defined
-class Factory(object):
-    def getObject(self, object_type):
-        if object_type == "Product1":
-            return Product1()
-        elif object_type == "Product2":
-            return Product2()
-f = Factory()
-a = f.getObject("Product1")
+       
+# Creator abstract class
+class Factory(ABC):
+    @abstractmethod
+    def create_product(self):
+        pass
+
+# Concrete Creator classes
+class ConcreteFactory1(Factory):
+    def create_product(self):
+        return ConcreteProduct1()
+
+class ConcreteFactory2(Factory):
+    def create_product(self):
+        return ConcreteProduct2()
+
+# Client code
+f = ConcreteFactory1()
+a = f.create_product()
 a.operation()
 
-a = f.getObject("Product2")
+f = ConcreteFactory2()
+a = f.create_product()
 a.operation()
 
 """ Output:
-Product1 Operation!
-Product2 Operation!
+Concrete Product1 Operation!
+Concrete Product2 Operation!
 """

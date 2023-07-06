@@ -9,30 +9,41 @@ class Handler(ABC):
         pass
 
 class ConcreteHandler1(Handler):
-    def handleRequest(self):
-        if True:  # Can handle request.
-            print("Finally handled by ConcreteHandler1")
-        elif self._successor is not None:
-            print("Message passed to next in chain by ConcreteHandler1")
-            self._successor.handleRequest()
+    def handleRequest(self, request):
+        if request == 'request1':
+            print('ConcreteHandler1 handles the request.')
+        elif self._successor:
+            self._successor.handleRequest(request)
 
 class ConcreteHandler2(Handler):
-    def handleRequest(self):
-        if False:  # Can't handle request.
-            print("Finally handled by ConcreteHandler2")
-        elif self._successor is not None:
-            print("Message passed to next in chain by ConcreteHandler2")
-            self._successor.handleRequest()
+    def handleRequest(self, request):
+        if request == 'request2':
+            print('ConcreteHandler2 handles the request.')
+        elif self._successor:
+            self._successor.handleRequest(request)
+
+class ConcreteHandler3(Handler):
+    def handleRequest(self, request):
+        if request == 'request3':
+            print('ConcreteHandler3 handles the request.')
+        elif self._successor:
+            self._successor.handleRequest(request)
 
 
 # Client Code
 ch1 = ConcreteHandler1()
 ch2 = ConcreteHandler2(ch1)
-ch2.handleRequest()
+ch3 = ConcreteHandler3(ch2)
+
+ch3.handleRequest('request1')
+ch3.handleRequest('request2')
+ch3.handleRequest('request3')
+ch3.handleRequest('request4')
 
 """
 Output:
-    Message passed to next in chain by ConcreteHandler2
-    Finally handled by ConcreteHandler1
+ConcreteHandler1 handles the request.
+ConcreteHandler2 handles the request.
+ConcreteHandler3 handles the request.
 
 """

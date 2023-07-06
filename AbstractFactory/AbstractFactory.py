@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+
 class Menu(ABC):
     @abstractmethod
     def desc(self):
@@ -11,7 +12,6 @@ class WinMenu(Menu):
 class MacMenu(Menu):
     def desc(self):
         print("Mac Menu!!")
-
 
 class Button(ABC):
     @abstractmethod
@@ -26,9 +26,8 @@ class MacButton(Button):
     def desc(self):
         print("Mac Button!!")
 
-
 ## Factory defined
-class GenFactory(ABC):
+class AbstractFactory(ABC):
     @abstractmethod
     def getMenu(self):
         pass
@@ -38,14 +37,14 @@ class GenFactory(ABC):
         pass
     
 
-class WinFactory(GenFactory):
+class WinFactory(AbstractFactory):
     def getMenu(self):
         return WinMenu()
     
     def getButton(self):
         return WinButton()
 
-class MacFactory(GenFactory):
+class MacFactory(AbstractFactory):
     def getMenu(self):
         return MacMenu()
     
@@ -53,7 +52,7 @@ class MacFactory(GenFactory):
         return MacButton()
 
 
-
+#client code
 m = MacFactory()
 m.getMenu().desc()
 m.getButton().desc()
@@ -63,12 +62,9 @@ w.getButton().desc()
 w.getMenu().desc()
 
 """
-Output:
-
 Mac Menu!!
 Mac Button!!
 Win Button!!
 Win Menu!!
 
 """
-

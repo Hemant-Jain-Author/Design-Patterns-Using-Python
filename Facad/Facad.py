@@ -1,7 +1,7 @@
 class SystemManagerFacade:
     def __init__(self):
-        self._subsystem1 = ComplexSubsystem1()
-        self._subsystem2 = ComplexSubsystem2()
+        self._subsystem1 = Subsystem1()
+        self._subsystem2 = Subsystem2()
 
     def operation(self):
         self._subsystem1.operation1()
@@ -9,20 +9,20 @@ class SystemManagerFacade:
         self._subsystem2.operation1()
         self._subsystem2.operation2()
 
-class ComplexSubsystem1:
+class Subsystem1:
     def operation1(self):
-        print("ComplexSubsystem1 operation1")
+        print("Subsystem1 operation1")
 
     def operation2(self):
-        print("ComplexSubsystem1 operation2")
+        print("Subsystem1 operation2")
 
 
-class ComplexSubsystem2:
+class Subsystem2:
     def operation1(self):
-        print("ComplexSubsystem2 operation1")
+        print("Subsystem2 operation1")
 
     def operation2(self):
-        print("ComplexSubsystem2 operation2")
+        print("Subsystem2 operation2")
 
 
 facade = SystemManagerFacade()
@@ -30,9 +30,9 @@ facade.operation()
 
 """
 Output:
-ComplexSubsystem1 operation1
-ComplexSubsystem1 operation2
-ComplexSubsystem2 operation1
-ComplexSubsystem2 operation2
+Subsystem1 operation1
+Subsystem1 operation2
+Subsystem2 operation1
+Subsystem2 operation2
 
 """

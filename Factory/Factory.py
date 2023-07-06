@@ -1,37 +1,45 @@
 from abc import ABC, abstractmethod
+
+# Product interface
 class Animal(ABC):
     @abstractmethod
-    def voice(self):
+    def speak(self):
         pass
 
+# Concrete Product classes
 class Dog(Animal):
-    def voice(self):
-        print("Bhow Bhow!!")
+    def speak(self):
+        print("Woof!") 
 
 class Cat(Animal):
-    def voice(self):
-        print("Meow Meow!!")
+    def speak(self):
+        print("Meow!")
 
-## Animal factory defined
-class AnimalFactory(object):
-    def getAnimal(self, object_type):
-        if object_type == "Dog":
-            return Dog()
-        elif object_type == "Cat":
-            return Cat()
-        
+# Creator abstract class
+class AnimalFactory(ABC):
+    @abstractmethod
+    def create_animal(self):
+        pass
 
-f = AnimalFactory()
-a = f.getAnimal("Dog")
-a.voice()
-a = f.getAnimal("Cat")
-a.voice()
+# Concrete Creator classes
+class DogFactory(AnimalFactory):
+    def create_animal(self):
+        return Dog()
+
+class CatFactory(AnimalFactory):
+    def create_animal(self):
+        return Cat()
+
+# Client code
+dog_factory = DogFactory()
+dog = dog_factory.create_animal()
+dog.speak()
+
+cat_factory = CatFactory()
+cat = cat_factory.create_animal()
+cat.speak()
 
 """
-
-Output:
-
-Bhow Bhow!!
-Meow Meow!!
-
+Woof!
+Meow!
 """

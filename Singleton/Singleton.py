@@ -2,19 +2,18 @@ import sys
 
 class Database(object):
     def __init__(self):
-        print("database created")
+        print("Database created")
     
     def addData(self, data):
         print(data)
 
 class Singleton(object):
     _instance = None  # Keep instance reference 
-    db = None
+
     def __new__(cls):
         if not cls._instance:
             cls._instance = object.__new__(cls) # super(Singleton, cls)
             cls.db = Database()
-            print("constructor")
         return cls._instance
     
     def addData(self, data):
@@ -23,11 +22,14 @@ class Singleton(object):
 
 s1 = Singleton() 
 s2 = Singleton()
-s1 = Singleton() 
-s2 = Singleton()
-s1 = Singleton() 
-s2 = Singleton()
-print(s1, s2)
+print(s1)
+print(s2)
 s2.addData("Hello, world!")
 
 
+"""
+database created
+<__main__.Singleton object at 0x7fccf49bec70>
+<__main__.Singleton object at 0x7fccf49bec70>
+Hello, world!
+"""

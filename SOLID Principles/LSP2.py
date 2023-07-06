@@ -15,38 +15,41 @@ class Bird(Animal):
         print(f"{self.name} is making a chirp sound.")
 
 
-class ICanFly:   
+class ICanFly:
+    def __init__(self):
+        self.flight_height = 0
+    
     def fly(self):
         pass
 
 
-class ICanSwim:   
-    def swim(self):
-        pass
-
-class ICanWalk :
-    def walk(self):
-        pass
-
-class Dodo(Bird, ICanWalk):
+class Dodo(Bird):
     def walk(self):
         print("The dodo is extinct and can just walk.")
 
-class Penguin(Bird, ICanSwim):
-    def swim(self):
-        print("The penguin is swimming!")
 
 class Eagle(Bird, ICanFly):
     def fly(self):
         print("The eagle is soaring through the sky!")
+        self.flight_height = 1000
+
+class Pigeon(Bird, ICanFly):
+    def fly(self):
+        print("The pigeon is fluttering its wings!")
+        self.flight_height = 100
 
 
+def test(flying_animal: ICanFly):
+    flying_animal.fly()
+    assert flying_animal.flight_height > 0, 
+    "Error: Animal is still at a zero height."
+    print("Animal is flying at a positive height.")
 
 bird1 = Eagle("Eagle")
-bird1.fly()
+test(bird1)
 
-bird2 = Penguin("Penguin")
-bird2.swim()
+bird2 = Pigeon("Eagle")
+test(bird2)
 
 bird3 = Dodo("Dodo")
-bird3.walk()
+test(bird3)

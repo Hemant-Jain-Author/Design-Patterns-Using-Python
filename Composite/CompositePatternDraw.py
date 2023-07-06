@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class IShapes:
+class IShape:
     @abstractmethod
     def move(self, x, y):
         pass
@@ -9,7 +9,7 @@ class IShapes:
     def draw(self):
         pass
 
-class Rectangle(IShapes):
+class Rectangle(IShape):
     def __init__(self, x, y, l, b):
         self.x = x
         self.y = y
@@ -24,7 +24,7 @@ class Rectangle(IShapes):
         print("Draw a Rectangle at (%s, %s)."%(self.x, self.y))
         return "<Rectangle>"
 
-class Circle(IShapes):
+class Circle(IShape):
     def __init__(self, x, y, radius):
         self.x = x
         self.y = y
@@ -38,7 +38,7 @@ class Circle(IShapes):
         print("Draw a Circle of radius %s at (%s, %s) ."%(self.radius, self.x, self.y))
         return "<Circle>"
 
-class Shapes(IShapes):
+class CompoundShape(IShape):
     def __init__(self):
         self.children = set()
     
@@ -58,12 +58,21 @@ class Shapes(IShapes):
             st += child.draw()
         st += ")"
         return st
-        
-all =  Shapes()
+
+# Client code.      
+all =  CompoundShape()
 all.add( Rectangle(1, 2, 1, 2))
 all.add( Circle(5, 3, 10))
-group = Shapes()
+group = CompoundShape()
 group.add(Rectangle(5, 7, 1, 2))
 group.add(Circle(2, 1, 2))
 all.add(group)
 print(all.draw())
+
+"""
+Draw a Rectangle at (1, 2).
+Draw a Circle of radius 2 at (2, 1) .
+Draw a Rectangle at (5, 7).
+Draw a Circle of radius 10 at (5, 3) .
+Shapes(<Rectangle>Shapes(<Circle><Rectangle>)<Circle>)
+"""

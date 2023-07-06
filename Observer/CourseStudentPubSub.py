@@ -55,4 +55,17 @@ if __name__ == '__main__':
     courses.notify('Tomarrow class at 1', 'Maths')
 
 
+"""
+Subscribing: John to subject: English 
+Subscribing: Eric to subject: English 
+Subscribing: Eric to subject: Maths 
+Subscribing: Jack to subject: Science 
 
+Publishing: Tomarrow class at 11 for subject English 
+Student John got :: Tomarrow class at 11 for subject English 
+Student Eric got :: Tomarrow class at 11 for subject English 
+
+Publishing: Tomarrow class at 1 for subject Maths 
+Student Eric got :: Tomarrow class at 1 for subject Maths 
+
+"""

@@ -1,3 +1,4 @@
+
 from abc import ABC, abstractmethod
 
 class Component(ABC):
@@ -25,12 +26,17 @@ class Leaf(Component):
     def operation(self):
         print("Leaf Operation")
 
+#Client code.
 composite = Composite()
 composite.add(Leaf())
-# composite.operation()
-
 composite2 = Composite()
 composite2.add(Leaf())
-
 composite.add(composite2)
 composite.operation()
+
+"""
+Composite Operation
+Composite Operation
+Leaf Operation
+Leaf Operation
+"""
