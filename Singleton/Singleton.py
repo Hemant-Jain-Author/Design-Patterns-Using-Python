@@ -4,7 +4,7 @@ class Database(object):
     def __init__(self):
         print("Database created")
     
-    def addData(self, data):
+    def add_data(self, data):
         print(data)
 
 class Singleton(object):
@@ -16,20 +16,20 @@ class Singleton(object):
             cls.db = Database()
         return cls._instance
     
-    def addData(self, data):
-        self.db.addData(data)
+    def add_data(self, data):
+        self.db.add_data(data)
     
 
+# Client code. 
 s1 = Singleton() 
 s2 = Singleton()
 print(s1)
 print(s2)
 s2.addData("Hello, world!")
 
-
 """
 database created
-<__main__.Singleton object at 0x7fccf49bec70>
-<__main__.Singleton object at 0x7fccf49bec70>
+<__main__.Singleton object at 0x000002260C56BCD0>
+<__main__.Singleton object at 0x000002260C56BCD0>
 Hello, world!
 """

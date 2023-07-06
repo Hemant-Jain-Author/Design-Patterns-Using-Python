@@ -7,7 +7,7 @@ class BookParser(ABC):
         pass
         
     @abstractmethod
-    def numPages(self, book):
+    def num_pages(self, book):
         pass
 
 
@@ -16,23 +16,23 @@ class ConcreteBookParser(BookParser):
         print("Concrete Subject Request Method")
         # Number of pages calculation heavy operation.
         # Suppose this calculation come to 1000 pages.
-        self._numPages = 1000
+        self._num_pages = 1000
 
-    def numPages(self):
+    def num_pages(self):
         print("Concrete Subject Request Method")
-        return self._numPages
+        return self._num_pages
 
 
 class LazyBookParserProxy(BookParser):
     def __init__(self, book):
         self._book = book
-        self._concSub = None
+        self._subject = None
 
-    def numPages(self):
-        if self._concSub == None:
-            self._concSub = ConcreteBookParser(self._book)
-        return self._concSub.numPages()
+    def num_pages(self):
+        if self._subject == None:
+            self._subject = ConcreteBookParser(self._book)
+        return self._subject.num_pages()
 
 # Client code
 proxy = LazyBookParserProxy("LOTR")
-print(proxy.numPages())
+print(proxy.num_pages())

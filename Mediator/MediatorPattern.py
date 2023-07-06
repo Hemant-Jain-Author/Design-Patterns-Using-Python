@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 class IChatRoom(ABC):
     @abstractmethod
-    def addParticipant(self, participant):
+    def add_participant(self, participant):
         pass
 
     @abstractmethod
@@ -10,16 +10,14 @@ class IChatRoom(ABC):
         pass
 
     @abstractmethod
-    def sendMessage(self, message, to):
-        pass
-    
-
+    def send_message(self, message, to):
+        pass  
         
 class ChatRoom(IChatRoom):
     def __init__(self):
         self.participants = {}
  
-    def addParticipant(self, participant):
+    def add_participant(self, participant):
         self.participants[participant.name] = participant
 
     def broadcast(self, message, origin):
@@ -28,15 +26,28 @@ class ChatRoom(IChatRoom):
             if p != origin:
                 self.participants[p].receive(message)
  
-    def sendMessage(self, message, to):
+    def send_message(self, message, to):
         self.participants[to].receive(message)
 
 
-class Participant(object):
+class IParticipant(object):
+    def __init__(self, name, chatRoom):
+        pass
+    
+    def broadcast(self, message):
+        pass
+
+    def send(self, message, to):
+        pass
+ 
+    def receive(self, message):
+        pass
+
+class Participant(IParticipant):
     def __init__(self, name, chatRoom):
         self.name = name
         self.chatRoom = chatRoom 
-        self.chatRoom.addParticipant(self)
+        self.chatRoom.add_participant(self)
     
     def broadcast(self, message):
         print(self.name + " broadcast Message : " + message)
@@ -44,16 +55,24 @@ class Participant(object):
 
     def send(self, message, to):
         print(self.name + " sent Message : " + message)
-        self.chatRoom.sendMessage(message, to)
+        self.chatRoom.send_message(message, to)
  
     def receive(self, message):
         print(self.name + " received Message : " + message)
 
+# Client code.
 chatRoom = ChatRoom()
 James = Participant("James", chatRoom)
 Michael = Participant("Michael", chatRoom)
 Robert = Participant("Robert", chatRoom)
-
 Michael.send("Good Morning.", "James")
-print()
 James.broadcast("Hello, World!")
+
+"""
+Michael sent Message : Good Morning.
+James received Message : Good Morning.
+James broadcast Message : Hello, World!
+ChatRoom broadcast Message : Hello, World!
+Michael received Message : Hello, World!
+Robert received Message : Hello, World!
+"""

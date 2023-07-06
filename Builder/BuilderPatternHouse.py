@@ -6,8 +6,8 @@ class House(object):
         self.wall = wall
         self.roof = roof
         
-    def display(self):
-        print("House of %s and %s"%(self.wall,self.roof))
+    def __str__(self):
+        return "House of %s and %s"%(self.wall,self.roof)
 
 # An abstract builder class that specifies the interface for building a house
 class HouseBuilder(ABC):
@@ -15,35 +15,35 @@ class HouseBuilder(ABC):
         self.house = House()
 
     @abstractmethod
-    def setWall(self):
+    def set_wall(self):
         pass
 
     @abstractmethod
-    def setRoof(self):
+    def set_roof(self):
         pass
 
-    def getHouse(self):
+    def get_house(self):
         temp = self.house
         self.house = House() # assign new house.
         return temp
 
 # A builder class that builds a wooden house
 class WoodenHouseBuilder(HouseBuilder):
-    def setWall(self):
+    def set_wall(self):
         self.house.wall = "Wooden Wall"
         return self
 
-    def setRoof(self):
+    def set_roof(self):
         self.house.roof = "Wooden Roof"
         return self
 
 # A builder class that builds a concrete house
 class ConcreteHouseBuilder(HouseBuilder):
-    def setWall(self):
+    def set_wall(self):
         self.house.wall = "Concrete Wall"
         return self
 
-    def setRoof(self):
+    def set_roof(self):
         self.house.roof = "Concrete Roof"
         return self
 
@@ -53,13 +53,13 @@ class HouseDirector:
         self._builder = builder
 
     def construct(self):
-        return self._builder.setWall().setRoof().getHouse()
+        return self._builder.set_wall().set_roof().get_house()
 
-# Building a concrete house using a ConcreteHouseBuilder object
+# Client code.
 builder = ConcreteHouseBuilder()
 director = HouseDirector(builder)
 house = director.construct()
-house.display()
+print(house)
 
 # Building a wooden house using a WoodenHouseBuilder object
 builder = WoodenHouseBuilder()

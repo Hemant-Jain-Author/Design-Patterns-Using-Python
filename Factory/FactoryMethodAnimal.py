@@ -15,22 +15,22 @@ class Cat(Animal):
 ## Animal factory defined
 class AnimalFactory(ABC):
     @abstractmethod
-    def getAnimal(self):
+    def get_animal(self):
         pass
 
 class CatFactory(AnimalFactory):
-    def getAnimal(self):
+    def get_animal(self):
         return Cat()
 
 class DogFactory(AnimalFactory):
-    def getAnimal(self):
+    def get_animal(self):
         return Dog()
 
-#Client Code
+# Client Code
 d = DogFactory()
-d.getAnimal().voice()
+d.get_animal().voice()
 c = CatFactory()
-c.getAnimal().voice()
+c.get_animal().voice()
 
 # loose coupeling 
 # single responsibility principle.
@@ -43,9 +43,9 @@ class Cow(Animal):
         print("Gooaa Gooaa!!")
 
 class CowFactory(AnimalFactory):
-    def getAnimal(self):
+    def get_animal(self):
         return Cow()
 
 #Client Code
 cw = CowFactory()
-cw.getAnimal().voice()
+cw.get_animal().voice()

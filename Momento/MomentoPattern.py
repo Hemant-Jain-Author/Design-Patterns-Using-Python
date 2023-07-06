@@ -1,26 +1,25 @@
 
 class Originator :    
-    def setState(self, state) :
+    def set_state(self, state) :
         self.state = state
     
-    def getState(self) :
+    def get_state(self) :
         return self.state
     
-    def createMemento(self) :
+    def create_memento(self) :
         return Memento(self.state)
     
-    def setMemento(self, m) :
-        self.state = m.getState()
+    def set_memento(self, m) :
+        self.state = m.get_state()
 
 class Memento :
     def __init__(self, state) :
         self.state = state 
 
-    # State is captured at init, no setState(self, state) function.
+    # State is captured at init, no set_state(self, state) function.
 
-    def getState(self) :
+    def get_state(self) :
         return self.state
-
     
 class CareTaker :
     def __init__(self):
@@ -28,7 +27,7 @@ class CareTaker :
         self.top = -1
         self.max = -1
     
-    def addMemento(self, m) :
+    def add_memento(self, m) :
         self.top += 1
         self.max = self.top
         if self.top <= len(self.history) - 1:
@@ -36,54 +35,62 @@ class CareTaker :
         else :
             self.history.append(m)
     
-    def getMemento(self, index) :
+    def get_memento(self, index) :
         return self.history[index]
     
     def undo(self) :
         print("Undoing state.")
         if (self.top <= 0):
             self.top = 0
-            return self.getMemento(0)
+            return self.get_memento(0)
         
         self.top -= 1
-        return self.getMemento(self.top)
+        return self.get_memento(self.top)
 
     def redo(self) :
         print("Redoing state.")
         if (self.top >= (len(self.history) -  1) or self.top >= self.max) :
-            return self.getMemento(self.top)
+            return self.get_memento(self.top)
         
         self.top += 1
-        return self.getMemento(self.top)
+        return self.get_memento(self.top)
     
-    def getStatesCount(self) :
+    def get_states_count(self) :
         return len(self.history)
     
-
+# Client code.
 originator = Originator()
-careTaker = CareTaker()
+care_taker = CareTaker()
 
-originator.setState("State 1")
-careTaker.addMemento(originator.createMemento())
-print(originator.getState())
+originator.set_state("State 1")
+care_taker.add_memento(originator.create_memento())
+print(originator.get_state())
+originator.set_state("State 2")
+care_taker.add_memento(originator.create_memento())
+print(originator.get_state())
+originator.set_state("State 3")
+care_taker.add_memento(originator.create_memento())
+print(originator.get_state())
 
-originator.setState("State 2")
-careTaker.addMemento(originator.createMemento())
-print(originator.getState())
+originator.set_memento(care_taker.undo())
+print(originator.get_state())
+originator.set_memento(care_taker.undo())
+print(originator.get_state())
+originator.set_memento(care_taker.redo())
+print(originator.get_state())
+originator.set_memento(care_taker.redo())
+print(originator.get_state())
 
-originator.setState("State 3")
-careTaker.addMemento(originator.createMemento())
-print(originator.getState())
-
-originator.setMemento(careTaker.undo())
-print(originator.getState())
-
-originator.setMemento(careTaker.undo())
-print(originator.getState())
-
-originator.setMemento(careTaker.redo())
-print(originator.getState())
-
-originator.setMemento(careTaker.redo())
-print(originator.getState())
-
+"""
+State 1
+State 2
+State 3
+Undoing state.
+State 2
+Undoing state.
+State 1
+Redoing state.
+State 2
+Redoing state.
+State 3
+"""

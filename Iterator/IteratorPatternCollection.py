@@ -4,7 +4,7 @@ class ConcreteAggregate(collections.abc.Iterable):
     def __init__(self):
         self._data = []
 
-    def addData(self, val):
+    def add_data(self, val):
         self._data.append(val)
 
     def __iter__(self):
@@ -23,10 +23,10 @@ class ConcreteIterator(collections.abc.Iterator):
         self._index += 1
         return val
 
+# Client code
 aggregate = ConcreteAggregate()
-
 for i in range(10):
-    aggregate.addData(i)
+    aggregate.add_data(i)
 
 for val in aggregate:
     print(val)

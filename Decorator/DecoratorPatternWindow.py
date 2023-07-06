@@ -22,12 +22,19 @@ class VerticalScrollBarDecorator(Decorator):
         self._component.draw()
         print("VerticalScrollBarDecorator draw")
 
-class HorizontalScrollBarDecorator (Decorator):
+class HorizontalScrollBarDecorator(Decorator):
     def draw(self):
         self._component.draw()
         print("HorizontalScrollBarDecorator draw")
 
+# Client code
 component = SimpleWindow()
 decorator1 = VerticalScrollBarDecorator(component)
 decorator2 = HorizontalScrollBarDecorator(decorator1)
 decorator2.draw()
+
+"""
+SimpleWindow draw.
+VerticalScrollBarDecorator draw
+HorizontalScrollBarDecorator draw
+"""

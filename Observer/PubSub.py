@@ -1,29 +1,29 @@
 class Publisher(object):
     def __init__(self):
-        self.topicSubscribers = {}
+        self.topic_subscribers = {}
  
     def subscribe(self, subs, topic):
-        if topic in self.topicSubscribers:
-            self.topicSubscribers[topic].append(subs)    
+        if topic in self.topic_subscribers:
+            self.topic_subscribers[topic].append(subs)    
         else :
-            self.topicSubscribers[topic] = [subs]
+            self.topic_subscribers[topic] = [subs]
 
         print('Subscribing: %s to topic: %s ' % (subs.id, topic))
 
 
-    def unSubscribe(self, subs, topic):
-        if topic in self.topicSubscribers:
-            self.topicSubscribers[topic].remove(subs)    
+    def unsubscribe(self, subs, topic):
+        if topic in self.topic_subscribers:
+            self.topic_subscribers[topic].remove(subs)    
 
         print('UnSubscribing: %s to topic: %s ' % (subs.id, topic))
 
  
     def notify(self, data, topic):
-        if topic not in self.topicSubscribers:
+        if topic not in self.topic_subscribers:
             return
  
         print('Publishing: %s in topic: %s ' %(data, topic))
-        for subscriber in self.topicSubscribers[topic]:
+        for subscriber in self.topic_subscribers[topic]:
             subscriber.update(data)
 
 
@@ -54,7 +54,7 @@ print()
 pub.notify('Topic 2 data', 'topic2')
 
 print()
-pub.unSubscribe(sub3, 'topic2')
+pub.unsubscribe(sub3, 'topic2')
 pub.notify('Topic 2 data', 'topic2')
 
 """

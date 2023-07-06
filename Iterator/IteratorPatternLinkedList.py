@@ -13,19 +13,19 @@ class LinkedList(collections.abc.Iterable):
         self.tail = None
         self.size = 0
 
-    def addTail(self, value):
-        newNode = self.Node(value, None)
+    def add_tail(self, value):
+        new_node = self.Node(value, None)
         if self.head == None:
-            self.head = newNode
+            self.head = new_node
         else:
-            self.tail.next = newNode
-        self.tail = newNode
+            self.tail.next = new_node
+        self.tail = new_node
 
-    def addHead(self, value):
-        newNode = self.Node(value, self.head)
+    def add_head(self, value):
+        new_node = self.Node(value, self.head)
         if self.head == None:
-            self.tail = newNode
-        self.head = newNode
+            self.tail = new_node
+        self.head = new_node
 
     def __iter__(self):
         return LinkedListIterator(self)
@@ -43,11 +43,14 @@ class LinkedListIterator(collections.abc.Iterator):
         self.curr = self.curr.next
         return val
 
+# Client code.
 aggregate = LinkedList()
-
-for i in range(10):
-    aggregate.addTail(i)
-    aggregate.addHead(i)
+for i in range(5):
+    aggregate.add_head(i)
 
 for val in aggregate:
     print(val, end=" ")
+
+"""
+4 3 2 1 0 
+"""

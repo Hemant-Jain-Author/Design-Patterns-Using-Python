@@ -14,15 +14,13 @@ class Adapter(DesiredInterface):
 
 class Adaptee:
     def some_operation(self):
-        print("Adaptee some_request() function called.")
+        print("Adaptee some_operation() function called.")
 
 
 # Client Code
 adapter = Adapter()
 adapter.operation()
 
-
 """
-Output:
-Adaptee some_request() function called.
+Adaptee some_operation() function called.
 """

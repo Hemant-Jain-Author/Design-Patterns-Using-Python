@@ -1,4 +1,3 @@
-
 from abc import ABC, abstractmethod
 
 class Subject(ABC):
@@ -12,12 +11,12 @@ class RealSubject(Subject):
 
 class Proxy(Subject):
     def __init__(self):
-        self._concSub = None
+        self._subject = None
 
     def request(self):
-        if self._concSub == None :
-            self._concSub = RealSubject() # Lazy Init
-        self._concSub.request()
+        if self._subject == None :
+            self._subject = RealSubject() # Lazy Init
+        self._subject.request()
 
 # Client code
 proxy = Proxy()

@@ -6,6 +6,7 @@ class MonoState(object):
         self.__dict__ = self.__sharedState
 
 
+# Client code. 
 m = MonoState()
 m1 = MonoState()
 print("MonoState Object 'm': ", m) # m and m1 are distinct objects

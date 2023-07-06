@@ -24,7 +24,7 @@ class Subsystem2:
     def operation2(self):
         print("Subsystem2 operation2")
 
-
+# Client code
 facade = SystemManagerFacade()
 facade.operation()
 

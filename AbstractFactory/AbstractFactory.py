@@ -29,42 +29,40 @@ class MacButton(Button):
 ## Factory defined
 class AbstractFactory(ABC):
     @abstractmethod
-    def getMenu(self):
+    def get_menu(self):
         pass
     
     @abstractmethod
-    def getButton(self):
+    def get_button(self):
         pass
     
-
 class WinFactory(AbstractFactory):
     def getMenu(self):
         return WinMenu()
     
-    def getButton(self):
+    def get_button(self):
         return WinButton()
 
 class MacFactory(AbstractFactory):
     def getMenu(self):
         return MacMenu()
     
-    def getButton(self):
+    def get_button(self):
         return MacButton()
 
 
-#client code
+# Client code.
 m = MacFactory()
-m.getMenu().desc()
-m.getButton().desc()
+m.get_menu().desc()
+m.get_button().desc()
 
 w = WinFactory()
-w.getButton().desc()
-w.getMenu().desc()
+w.get_button().desc()
+w.get_menu().desc()
 
 """
 Mac Menu!!
 Mac Button!!
 Win Button!!
 Win Menu!!
-
 """

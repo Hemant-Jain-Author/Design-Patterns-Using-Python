@@ -26,7 +26,7 @@ class Leaf(Component):
     def operation(self):
         print("Leaf Operation")
 
-#Client code.
+# Client code.
 composite = Composite()
 composite.add(Leaf())
 composite2 = Composite()

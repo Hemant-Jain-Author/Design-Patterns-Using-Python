@@ -7,34 +7,34 @@ class Element(ABC):
 
 class ConcreteElementA(Element):
     def accept(self, visitor):
-        visitor.visitElementA(self)
+        visitor.visit_elementA(self)
 
 class ConcreteElementB(Element):
     def accept(self, visitor):
-        visitor.visitElementB(self)
+        visitor.visit_elementB(self)
 
 class Visitor(ABC):
     @abstractmethod
-    def visitElementA(self, elementA):
+    def visit_elementA(self, elementA):
         pass
 
     @abstractmethod
-    def visitElementB(self, elementB):
+    def visit_elementB(self, elementB):
         pass
 
 class ConcreteVisitor1(Visitor):
-    def visitElementA(self, elementA):
-        print("ConcreteVisitor1", "visitElementA")
+    def visit_elementA(self, elementA):
+        print("ConcreteVisitor1 visit_elementA() method called.")
 
-    def visitElementB(self, elementB):
-        print("ConcreteVisitor1", "visitElementB")
+    def visit_elementB(self, elementB):
+        print("ConcreteVisitor1 visit_elementB() method called.")
 
 class ConcreteVisitor2(Visitor):
-    def visitElementA(self, elementA):
-        print("ConcreteVisitor2", "visitElementA")
+    def visit_elementA(self, elementA):
+        print("ConcreteVisitor2 visit_elementA() method called.")
 
-    def visitElementB(self, elementB):
-        print("ConcreteVisitor2", "visitElementB")
+    def visit_elementB(self, elementB):
+        print("ConcreteVisitor2 visit_elementB() method called.")
 
 
 # Client Code.
@@ -46,7 +46,6 @@ elementA = ConcreteElementB()
 elementA.accept(visitor1)
 
 """
-Output:
-ConcreteVisitor1 visitElementA
-ConcreteVisitor1 visitElementB
+ConcreteVisitor1 visit_elementA() method called.
+ConcreteVisitor1 visit_elementB() method called.
 """

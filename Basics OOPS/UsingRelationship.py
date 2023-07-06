@@ -21,5 +21,6 @@ class B(object):
     def __del__(self): 
         print('B destroyed') 
 
+# Client code.
 c = B()
 c.fun2()

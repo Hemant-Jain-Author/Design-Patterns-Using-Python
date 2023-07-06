@@ -19,16 +19,17 @@ class Circle(Shape):
 	def area(self):
 		return math.pi*self.radius*self.radius
 
-def SumArea(shapes):
+def total_area(shapes):
 	area = 0
 	for shape in shapes:
 		area += shape.area()
 	return area
 
+# Client code.
 r = Rectangle(10,20)
 c = Circle(10)
 s = []
 s.append(r)
 s.append(c)
 
-print(SumArea(s))
+print(total_area(s))

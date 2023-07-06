@@ -13,7 +13,7 @@ class Circle(Shape):
     def __init__(self, r):
         self.radius = r
     
-def SumArea(shapes):
+def total_area(shapes):
     area = 0
     for shape in shapes:
         if isinstance(shape, Rectangle):
@@ -22,6 +22,7 @@ def SumArea(shapes):
             area += shape.radius * shape.radius * math.pi
     return area
 
+# Client code.
 r = Rectangle(10,20)
 c = Circle(10)
 s = []
@@ -29,4 +30,4 @@ s.append(r)
 s.append(c)
 
 
-print(SumArea(s))
+print(total_area(s))

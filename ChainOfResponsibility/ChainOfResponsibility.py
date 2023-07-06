@@ -5,45 +5,40 @@ class Handler(ABC):
         self._successor = successor
 
     @abstractmethod
-    def handleRequest(self):
+    def handle_request(self):
         pass
 
 class ConcreteHandler1(Handler):
-    def handleRequest(self, request):
-        if request == 'request1':
-            print('ConcreteHandler1 handles the request.')
-        elif self._successor:
-            self._successor.handleRequest(request)
+    def handleRequest(self):
+        if True:  # Can handle request.
+            print("Finally handled by ConcreteHandler1")
+        elif self._successor is not None:
+            print("Message passed to next in chain by ConcreteHandler1")
+            self._successor.handleRequest()
 
 class ConcreteHandler2(Handler):
-    def handleRequest(self, request):
-        if request == 'request2':
-            print('ConcreteHandler2 handles the request.')
-        elif self._successor:
-            self._successor.handleRequest(request)
+    def handleRequest(self):
+        if False:  # Can't handle request.
+            print("Finally handled by ConcreteHandler2")
+        elif self._successor is not None:
+            print("Message passed to next in chain by ConcreteHandler2")
+            self._successor.handleRequest()
 
 class ConcreteHandler3(Handler):
-    def handleRequest(self, request):
+    def handle_request(self, request):
         if request == 'request3':
-            print('ConcreteHandler3 handles the request.')
+            print('ConcreteHandler3 handles the request3.')
         elif self._successor:
-            self._successor.handleRequest(request)
-
+            self._successor.handle_request(request)
 
 # Client Code
 ch1 = ConcreteHandler1()
 ch2 = ConcreteHandler2(ch1)
-ch3 = ConcreteHandler3(ch2)
-
-ch3.handleRequest('request1')
-ch3.handleRequest('request2')
-ch3.handleRequest('request3')
-ch3.handleRequest('request4')
+ch2.handleRequest()
 
 """
 Output:
-ConcreteHandler1 handles the request.
-ConcreteHandler2 handles the request.
-ConcreteHandler3 handles the request.
+    Message passed to next in chain by ConcreteHandler2
+    Finally handled by ConcreteHandler1
 
 """

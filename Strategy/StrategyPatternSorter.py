@@ -8,7 +8,7 @@ class Sorting(ABC):
 class BubbleSort(Sorting):
     def sort(self, numbers):
         # Bubble Sort Algorithm
-        print("Bubble Sort Algorithm")        
+        print("Bubble Sort Algorithm executed.")        
         size = len(numbers)
         for i in range(size - 1):
             for j in range(size - i - 1):
@@ -21,7 +21,7 @@ class BubbleSort(Sorting):
 class SelectionSort(Sorting):
     def sort(self, numbers):
         # Selection Sort Algorithm
-        print("Selection Sort Algorithm")
+        print("Selection Sort Algorithm executed.")
         # reverse array creation
         size = len(numbers)
         for i in range(size - 1):
@@ -39,7 +39,7 @@ class StrategyClass:
     def __init__(self, algo = BubbleSort()):
         self.sorter = algo
 
-    def setSorter(self, algo):
+    def set_sorter(self, algo):
         self.sorter = algo
     
     def sort(self, a):
@@ -53,6 +53,13 @@ s.sort(a)
 print(a)
 
 a = [4, 5, 3, 2, 6, 7, 1, 8, 9, 10]
-s.setSorter(SelectionSort())
+s.set_sorter(SelectionSort())
 s.sort(a)
 print(a)
+
+"""
+Bubble Sort Algorithm executed.
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Selection Sort Algorithm executed.
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+"""

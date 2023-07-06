@@ -2,33 +2,34 @@ class Person(object):
     def __init__(self, name, age, gender): #constructor
         self.name = name #data members / attributes
         self.age = age
-        self.__gender = gender
+        self.gender = gender
     
-    def toString(self): # member function
-        return "Person: %s:%s" % (self.name, self.age)
+    def __str__(self): # member function
+        return "Person: %s is a %s and %s years old." % (self.name, self.gender, self.age)
 
-    def getGender(self):
-        return self.__gender
+    def get_gender(self):
+        return self.gender
 
 
 class Citizen(Person):
     def __init__(self, name, age, id, gender): #constructor
-        self.name = name
-        self.age = age
+        super().__init__(name, age, gender)
         self.id = id
-        self.__gender = gender
 
-    def voterId(self):
+    def voter_Id(self):
         return self.id
     
-    def toString(self):
-        return "Citizen: %s:%s:%s:%s" % (self.name, self.age, self.__gender, self.id)
+    def __str__(self):
+        return "Citizen: %s is a %s and %s years old with voter id %s." % (self.name, self.gender, self.age, self.id)
 
 
+#Client code
+p = Person("John", 32, "Male")
+print(p)
+c = Citizen("Smith", 31, 1234, "Male")
+print(c)
 
-p = Person("John", 32) # p is an object of type Person
-r = p.toString()
-print("Type of Object:", type(p), r, p.age, p.getGender(), "Memory Address:", id(p))
-
-c = Citizen("Smith", 31, 1234, "M")
-print(c, c.toString(), c.voterId())
+"""
+Person: John is a Male and 32 years old.
+Citizen: Smith is a Male and 31 years old with voter id 1234.
+"""

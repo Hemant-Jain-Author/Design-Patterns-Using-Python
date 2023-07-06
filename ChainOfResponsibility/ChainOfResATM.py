@@ -6,28 +6,27 @@ class ATMHandlerAbstract(ABC):
         self._denomination = denomination
 
     @abstractmethod
-    def handleRequest(self, amount):
+    def handle_request(self, amount):
         pass
 
 class ATMHandler(ATMHandlerAbstract):
-    def handleRequest(self, amount):
+    def handle_request(self, amount):
         q = int(amount // self._denomination)
         r = amount % self._denomination
         if q != 0:
             print("%s notes of %s"%(q,self._denomination))
 
         if r != 0 and self._successor is not None:
-            self._successor.handleRequest(r)
+            self._successor.handle_request(r)
 
 
 # Client Code
 ch = ATMHandler(ATMHandler(ATMHandler(ATMHandler(None, 10), 50), 100), 1000)
-ch.handleRequest(5560)
+ch.handle_request(5560)
 
 """
-Output:
-    5 notes of 1000
-    5 notes of 100
-    1 notes of 50
-    1 notes of 10
+5 notes of 1000
+5 notes of 100
+1 notes of 50
+1 notes of 10
 """

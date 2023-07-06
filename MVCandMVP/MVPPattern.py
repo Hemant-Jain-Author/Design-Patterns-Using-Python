@@ -3,11 +3,11 @@ class Model(object):
     def __init__(self):
         self.data = 'Hello, World!'
 
-    def setData(self, data):
+    def set_data(self, data):
         print("Model: Set data :", data)
         self.data = data
 
-    def getData(self):
+    def get_data(self):
         print("Model: Get data: ", self.data)
         return self.data
 
@@ -20,19 +20,31 @@ class Presenter(object):
         self.model = Model()
         self.view = View()
 
-    def setData(self, data):
+    def set_data(self, data):
         print("Presenter: Receive data from client.")
-        self.model.setData(data)
+        self.model.set_data(data)
 
-    def updateView(self):
+    def update_view(self):
         print("Presenter: Receive update view from client.")
-        data = self.model.getData()
+        data = self.model.get_data()
         self.view.update(data)
 
-class Client(object):
-    print("Client: Pass trigger to Presenter.")
-    presenter = Presenter()
-    presenter.updateView()
+# Client code
+print("Client: Pass trigger to Presenter.")
+presenter = Presenter()
+presenter.update_view()
 
-    presenter.setData("Hello, Students!")
-    presenter.updateView()
+presenter.set_data("Hello, Students!")
+presenter.update_view()
+
+"""
+Client: Pass trigger to Presenter.
+Presenter: Receive update view from client.
+Model: Get data:  Hello, World!
+View: Updating the view with data:  Hello, World!
+Presenter: Receive data from client.
+Model: Set data : Hello, Students!
+Presenter: Receive update view from client.
+Model: Get data:  Hello, Students!
+View: Updating the view with data:  Hello, Students!
+"""

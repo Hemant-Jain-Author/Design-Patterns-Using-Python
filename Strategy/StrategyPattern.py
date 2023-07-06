@@ -19,7 +19,7 @@ class Context:
     def __init__(self, strategy = ConcreteStrategy1()):
         self.strategy = strategy
 
-    def setStrategy(self, strategy):
+    def set_strategy(self, strategy):
         self.strategy = strategy
     
     def execute(self):
@@ -30,6 +30,10 @@ class Context:
 #Client code.
 c = Context()
 c.execute()
-
-c.setStrategy(ConcreteStrategy2())
+c.set_strategy(ConcreteStrategy2())
 c.execute()
+
+"""
+ConcreteStrategy1 execute
+ConcreteStrategy2 execute
+"""

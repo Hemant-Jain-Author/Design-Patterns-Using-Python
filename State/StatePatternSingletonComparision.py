@@ -4,14 +4,14 @@ import math
 
 class Context:
     def __init__(self, state):
-        self.currentState = state
+        self.current_state = state
         
-    def changeState(self, state):
-        self.currentState = state
+    def change_state(self, state):
+        self.current_state = state
     
     def request(self):
-        #print(self.currentState)
-        self.currentState.handle(self)
+        #print(self.current_state)
+        self.current_state.handle(self)
 
 
 class State(object):
@@ -22,33 +22,33 @@ class State(object):
 class ConcreteState1(State):
     _instance = None  # Keep instance reference 
     @staticmethod
-    def getInstance(): # Singleton pattern
+    def instance(): # Singleton pattern
         if not ConcreteState1._instance:  
             ConcreteState1._instance = ConcreteState1()
         return ConcreteState1._instance
 
 
     def handle(self, context):
-        context.changeState(ConcreteState2.getInstance())
+        context.change_state(ConcreteState2.instance())
 
 
 class ConcreteState2(State):
     _instance = None  # Keep instance reference 
     @staticmethod
-    def getInstance(): # Singleton pattern
+    def instance(): # Singleton pattern
         if not ConcreteState2._instance:  
             ConcreteState2._instance = ConcreteState2()
         return ConcreteState2._instance
 
 
     def handle(self, context):
-        context.changeState(ConcreteState3.getInstance())
+        context.change_state(ConcreteState3.instance())
 
 
 class ConcreteState3(State):
     _instance = None  # Keep instance reference 
     @staticmethod
-    def getInstance(): # Singleton pattern
+    def instance(): # Singleton pattern
         if not ConcreteState3._instance:  
             ConcreteState3._instance = ConcreteState3()
         return ConcreteState3._instance
@@ -56,20 +56,20 @@ class ConcreteState3(State):
 
     def handle(self, context):
 
-        context.changeState(ConcreteState4.getInstance())
+        context.change_state(ConcreteState4.instance())
 
 
 class ConcreteState4(State):
     _instance = None  # Keep instance reference 
     @staticmethod
-    def getInstance(): # Singleton pattern
+    def instance(): # Singleton pattern
         if not ConcreteState4._instance:  
             ConcreteState4._instance = ConcreteState4()
         return ConcreteState4._instance
 
 
     def handle(self, context):
-        context.changeState(ConcreteState1.getInstance())
+        context.change_state(ConcreteState1.instance())
 
 class St(ABC):
     @abstractmethod
@@ -79,22 +79,22 @@ class St(ABC):
 
 class ConcreteSt1(St):
     def handle(self, context):
-        context.changeState(ConcreteSt2())
+        context.change_state(ConcreteSt2())
 
 
 class ConcreteSt2(St):
     def handle(self, context):
-        context.changeState(ConcreteSt3())
+        context.change_state(ConcreteSt3())
 
 
 class ConcreteSt3(St):
     def handle(self, context):
-        context.changeState(ConcreteSt4())
+        context.change_state(ConcreteSt4())
 
 
 class ConcreteSt4(St):
     def handle(self, context):
-        context.changeState(ConcreteSt1())
+        context.change_state(ConcreteSt1())
 
 
 def test(state, count):
@@ -110,7 +110,7 @@ state1 = ConcreteSt1()
 test(state1, 10)
 
 #using singleton.
-state1 = ConcreteState1.getInstance()
+state1 = ConcreteState1.instance()
 test(state1, 10)
 
 """

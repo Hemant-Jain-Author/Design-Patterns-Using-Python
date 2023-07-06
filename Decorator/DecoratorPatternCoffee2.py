@@ -2,18 +2,18 @@ from abc import ABC, abstractmethod
 
 class ICoffee (ABC):
     @abstractmethod
-    def getCost(self):
+    def get_cost(self):
         pass
     
     @abstractmethod
-    def getIngredients(self):
+    def get_ingredients(self):
         pass
 
 class SimpleCoffee(ICoffee):
-    def getCost(self):
+    def get_cost(self):
         return 10
 
-    def getIngredients(self):
+    def get_ingredients(self):
         return "Coffee"
 
 class CoffeeDecorator(ICoffee):
@@ -22,11 +22,11 @@ class CoffeeDecorator(ICoffee):
         self._cost = cost
         self._name = name
 
-    def getCost(self):
-        return self._component.getCost() + self._cost
+    def get_cost(self):
+        return self._component.get_cost() + self._cost
     
-    def getIngredients(self):
-        return self._component.getIngredients() + ", " + self._name
+    def get_ingredients(self):
+        return self._component.get_ingredients() + ", " + self._name
 
 class MilkDecorator(CoffeeDecorator):
     def __init__(self, component):
@@ -36,13 +36,14 @@ class EspressoDecorator (CoffeeDecorator):
     def __init__(self, component):
         super().__init__(component, "Espresso", 5)
 
+# Client code
 component = SimpleCoffee()
 decorator1 = MilkDecorator(component)
 decorator2 = EspressoDecorator(decorator1)
-print("Coffee cost is :: %s" %decorator2.getCost())
-print("Coffee ingredients are :: %s" %decorator2.getIngredients())
+print("Coffee cost is :: %s" %decorator2.get_cost())
+print("Coffee ingredients are :: %s" %decorator2.get_ingredients())
 
 
 latte = MilkDecorator(MilkDecorator(SimpleCoffee()))
-print("Coffee cost is :: %s" %latte.getCost())
-print("Coffee ingredients are :: %s" %latte.getIngredients())
+print("Coffee cost is :: %s" %latte.get_cost())
+print("Coffee ingredients are :: %s" %latte.get_ingredients())
