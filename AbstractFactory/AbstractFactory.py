@@ -37,14 +37,14 @@ class AbstractFactory(ABC):
         pass
     
 class WinFactory(AbstractFactory):
-    def getMenu(self):
+    def get_menu(self):
         return WinMenu()
     
     def get_button(self):
         return WinButton()
 
 class MacFactory(AbstractFactory):
-    def getMenu(self):
+    def get_menu(self):
         return MacMenu()
     
     def get_button(self):

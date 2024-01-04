@@ -1,65 +1,54 @@
 class Courses(object):
     def __init__(self):
-        self.course_students = {}
- 
-    def subscribe(self, subs, subject):
-        if subject in self.course_students:
-            self.course_students[subject].append(subs)    
-        else :
-            self.course_students[subject] = [subs]
+        self._course_students = {}
 
-        print('Subscribing: %s to subject: %s ' % (subs.name, subject))
+    def subscribe(self, subject, student):
+        if subject not in self._course_students:
+            self._course_students[subject] = set()
+        self._course_students[subject].add(student)
 
+    def unsubscribe(self, subject, student):
+        if subject in self._course_students:
+            self._course_students[subject].discard(student)
 
-    def unsubscribe(self, subs, subject):
-        if subject in self.course_students:
-            self.course_students[subject].remove(subs)    
-
-        print('UnSubscribing: %s to subject: %s ' % (subs.name, subject))
-
- 
-    def notify(self, data, subject):
-        if subject not in self.course_students:
+    def publish(self, subject, message):
+        if subject not in self._course_students:
+            print(f"No subscribers for subject '{subject}'.")
             return
- 
-        print('Publishing: %s for subject %s ' %(data, subject))
-        for student in self.course_students[subject]:
-            student.update('%s for subject %s ' %(data, subject))
+        for student in self._course_students[subject]:
+            student.notify(subject, message)
 
 
 class Student(object):
     def __init__(self, name):
         self.name = name
- 
-    def update(self, data):
-        print('Student %s got :: %s'%(self.name, data))
+
+    def notify(self, subject, message):
+        print(f"{self.name} received message on subject '{subject}': {message}")
+
 
 # Client code.
 courses = Courses()
 john = Student('John')
 eric = Student('Eric')
 jack = Student('Jack')
-print()
-courses.subscribe(john, 'English')
-courses.subscribe(eric, 'English')
-courses.subscribe(eric, 'Maths')
-courses.subscribe(jack, 'Science')
-print()
-courses.notify('Tomarrow class at 11', 'English')
-print()
-courses.notify('Tomarrow class at 1', 'Maths')
+
+courses.subscribe('English', john)
+courses.subscribe('English', eric)
+courses.subscribe('Maths', eric)
+courses.subscribe('Science', jack)
+
+courses.publish('English', 'Tomorrow class at 11')
+courses.publish('Maths', 'Tomorrow class at 1')
+
+# Unsubscribe Eric from English
+courses.unsubscribe('English', eric)
+
+courses.publish('English', 'Updated schedule for English')
 
 """
-Subscribing: John to subject: English 
-Subscribing: Eric to subject: English 
-Subscribing: Eric to subject: Maths 
-Subscribing: Jack to subject: Science 
-
-Publishing: Tomarrow class at 11 for subject English 
-Student John got :: Tomarrow class at 11 for subject English 
-Student Eric got :: Tomarrow class at 11 for subject English 
-
-Publishing: Tomarrow class at 1 for subject Maths 
-Student Eric got :: Tomarrow class at 1 for subject Maths 
-
+Eric received message on subject 'English': Tomorrow class at 11
+John received message on subject 'English': Tomorrow class at 11
+Eric received message on subject 'Maths': Tomorrow class at 1
+John received message on subject 'English': Updated schedule for English
 """

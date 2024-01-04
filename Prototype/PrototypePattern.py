@@ -14,20 +14,18 @@ class ConcretePrototype1(Prototype):
     def clone(self):
         # ConcretePrototype1 clone
         return copy.deepcopy(self)
+    
+    def __str__(self):
+        return "ConcretePrototype1"
 
 class ConcretePrototype2(Prototype):
     def clone(self):
         # ConcretePrototype2 clone
         return copy.deepcopy(self)
-
-# Client code
-c1 = ConcretePrototype1()
-c2 = ConcretePrototype2()
-print(c1, c2)
-c3 = c1.clone()
-c4 = c2.clone()
-print(c3, c4)
-
+    
+    def __str__(self):
+        return "ConcretePrototype2"
+    
 
 class PrototypeRegistry:
     _prototypes = {}
@@ -45,11 +43,17 @@ class PrototypeRegistry:
 
     @staticmethod
     def load():
-        PrototypeRegistry.add_prototype("1", ConcretePrototype1())
-        PrototypeRegistry.add_prototype("2", ConcretePrototype2())
+        PrototypeRegistry.add_prototype("CP1", ConcretePrototype1())
+        PrototypeRegistry.add_prototype("CP2", ConcretePrototype2())
 
 # Client code
 PrototypeRegistry.load()
-c1 = PrototypeRegistry.get_prototype("1")
-c2 = PrototypeRegistry.get_prototype("2")
-print(c1, c2)
+c1 = PrototypeRegistry.get_prototype("CP1")
+c2 = PrototypeRegistry.get_prototype("CP2")
+print(c1)
+print(c2)
+
+"""
+ConcretePrototype1
+ConcretePrototype2
+"""
