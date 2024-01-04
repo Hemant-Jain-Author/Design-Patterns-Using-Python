@@ -10,12 +10,13 @@ class NonterminalExpression(AbstractExpression):
         self._expression = expression
 
     def interpret(self):
+        print("NonTerminalExpression:interpret")
         self._expression.interpret()
 
 
 class TerminalExpression(AbstractExpression):
     def interpret(self):
-        pass
+        print("TerminalExpression:interpret")
 
 #Client Code.
 tree = NonterminalExpression(TerminalExpression())

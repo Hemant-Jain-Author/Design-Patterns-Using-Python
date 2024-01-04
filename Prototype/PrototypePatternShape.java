@@ -7,7 +7,7 @@ class Shape(ABC):
         self._color = ""
     
     @abstractmethod
-    def _str_(self):
+    def __str__(self):
         return "Shape"
     
     @abstractmethod
@@ -18,14 +18,14 @@ class Rectangle(Shape):
     def clone(self):
         return copy.deepcopy(self)
 
-    def _str_(self):
+    def __str__(self):
         return "Rectangle."
 
 class Circle(Shape):
     def clone(self):
         return copy.deepcopy(self)
 
-    def _str_(self):
+    def __str__(self):
         return "Circle."
 
 class ShapeRegistry:
@@ -52,3 +52,7 @@ ShapeRegistry.load()
 c = ShapeRegistry.get_shape("circle")
 r = ShapeRegistry.get_shape("rectangle")
 print(c, r)
+
+"""
+Circle. Rectangle.
+"""
