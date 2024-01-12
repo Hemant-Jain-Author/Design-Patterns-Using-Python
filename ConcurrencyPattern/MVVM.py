@@ -38,7 +38,8 @@ class View:
         print("Display Data:", self.view_model.data)
 
     def get_user_input(self):
-        user_input = input("Enter data: ")
+        #user_input = input("Enter data: ")
+        user_input = "Hello, world!"
         self.view_model.update_model(user_input)
 
 
